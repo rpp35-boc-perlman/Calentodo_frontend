@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest test",
     "coverage": "jest --coverage",
-    "start": "node NODE_ENV=PROD server/www.js",
+    "start": "NODE_ENV=PROD node server/www.js",
     "react-dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
     "dev": "NODE_ENV=DEV nodemon server/www.js"
