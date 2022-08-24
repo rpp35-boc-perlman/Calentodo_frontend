@@ -1,9 +1,12 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import axios from 'axios';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+
 
 class App extends React.Component {
   constructor(props) {
@@ -13,8 +16,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        Hello Worldasdf
+      <div style={{background: '#0a0f72'}}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+        </Routes>
+      </BrowserRouter>
       </div>
     );
   }
