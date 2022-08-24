@@ -1,12 +1,15 @@
 const express = require('express');
 
 const app = express();
-const port = 3000;
 
 app.use(express.static('client/dist'));
 
+// test router - only active during testing
+app.get('/status', (req,res,next) => {
+    res.status(200).send('up')
+});
+
 // routes
 
-app.listen(port, () => {
-  console.log(`CalenTodo 🥳 listening on port ${port}`);
-});
+
+module.exports = app
