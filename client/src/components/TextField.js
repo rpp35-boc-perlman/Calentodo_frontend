@@ -8,6 +8,7 @@ export default function TextInput (props) {
             id="filled-basic" 
             label={props.label} 
             variant="filled"
+            type={props.type ? props.type : 'text'}
             onChange={(e) => props.onChange(e.target.value)}
         />
     )

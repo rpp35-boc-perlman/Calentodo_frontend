@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import axios from 'axios';
 
 import Btn from '../components/Button';
 import TextInput from '../components/TextField';
@@ -12,6 +13,30 @@ export default function LoginPage (props) {
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
     const [mode, setMode] = useState('login')
+
+    // verify users passwords match on new account creation
+    function verifyPassword () { 
+        return password === password2
+    }
+
+    function handleSignIn () {
+        const config = {
+            url: '/userService/login',
+            method: 'POST',
+            data: {
+                'user_email': email,
+                'password': password
+            }
+        }
+        axios(config)
+        .then(r => {
+            console.log(r)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
 
     if(mode === 'login') {
         return (
@@ -45,8 +70,12 @@ export default function LoginPage (props) {
                         onChange={setPassword}
                         value={password}
                         label="Password"
+                        type="password"
                     />
-                    <Btn text="Login" />
+                    <Btn 
+                        text="Login"
+                        onClick={() => handleSignIn()}
+                    />
                     <Btn
                         variant="text"
                         text="Don't have an account yet?"
@@ -87,11 +116,13 @@ export default function LoginPage (props) {
                         onChange={setPassword}
                         value={password}
                         label="Password"
+                        type="password"
                     />
                     <TextInput 
                         onChange={setPassword2}
                         value={password2}
                         label="Confirm Password"
+                        type="password"
                     />
                     <Btn text="Create Account" />
                     <Btn
