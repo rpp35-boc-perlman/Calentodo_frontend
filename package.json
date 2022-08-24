@@ -6,10 +6,10 @@
   "scripts": {
     "test": "jest test",
     "coverage": "jest --coverage",
-    "start": "nodemon NODE_ENV=DEV server/www.js",
+    "start": "node NODE_ENV=PROD server/www.js",
     "react-dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "deploy": "NODE_ENV=PROD node server/www.js"
+    "dev": "NODE_ENV=DEV nodemon server/www.js"
   },
   "repository": {
     "type": "git",

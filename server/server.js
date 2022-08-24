@@ -10,7 +10,6 @@ const distDir = path.join(__dirname, '../client/dist')
 
 app.use( express.static(distDir) );
 
-
 // test router - only active during testing
 app.get('/status', (req,res,next) => {
     res.status(200).send('up')
