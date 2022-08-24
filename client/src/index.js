@@ -1,4 +1,5 @@
 import React from 'react';
+import EditModal from './edit_modal/edit.js';
 import { createRoot } from 'react-dom/client';
 import axios from 'axios';
 
@@ -15,6 +16,7 @@ class App extends React.Component {
     return (
       <div>
         Hello Worldasdf
+        <EditModal />
       </div>
     );
   }
