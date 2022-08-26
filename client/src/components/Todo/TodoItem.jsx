@@ -41,7 +41,7 @@ var TodoItem = ({description, start, duration, category, status}) => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: `'${colorMap[status]}'`,
+    backgroundColor: `${colorMap[status]}`,
     paddingLeft: 3,
     paddingRight: 3
   };
@@ -65,19 +65,16 @@ var TodoItem = ({description, start, duration, category, status}) => {
             </Paper>
           </Grid>
           <Grid item xs={5} md={5}>
-            <span>Start</span>
             <Paper sx={paperStyle}>
-              <Typography>{start}</Typography>
+              <Typography>Start: {start}</Typography>
             </Paper>
           </Grid>
           <Grid item xs={5} md={5}>
-            <span>Duration</span>
             <Paper sx={paperStyle}>
-              <Typography>{duration}</Typography>
+              <Typography>Duration: {duration}</Typography>
             </Paper>
           </Grid>
           <Grid item xs={2} md={2}>
-            <span>Duration</span>
             <button>Edit</button>
           </Grid>
           <Grid item xs={12} md={12}>
