@@ -9,7 +9,7 @@
     "start": "NODE_ENV=PROD node server/www.js",
     "react-dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "dev": "NODE_ENV=DEV nodemon server/www.js"
+    "dev": "nodemon server/www.js"
   },
   "repository": {
     "type": "git",
@@ -22,15 +22,18 @@
   },
   "homepage": "https://github.com/rpp35-boc-perlman/Calentodo_frontend#readme",
   "dependencies": {
+    "@emotion/cache": "^11.10.3",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.10.1",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "hoist-non-react-statics": "^3.3.2",
     "morgan": "^1.10.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.18.10",
