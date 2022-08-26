@@ -18,7 +18,16 @@ const theme = createTheme({
       fontSize: 40,
     }
   },
+  palette: {
+    green: {
+      main: '#3EAA1A'
+    },
+    category1: {
+      main: '#3EAA1A'
+    }
+  }
 });
+
 
 var PendingDisplay = (props) => {
   const [todos, setTodos] = useState([]);
@@ -64,10 +73,11 @@ var PendingDisplay = (props) => {
           })}
         </Box>
         <Box id={'addToCalendar'} sx={{
+          display: 'flex',
           backgroundColor: '#00FF00',
           width: '5vw',
         }}>
-          Add To Calendar
+          <Typography id="vertical">ADD TO CALENDAR</Typography>
         </Box>
       </Box>
     </ThemeProvider>

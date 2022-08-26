@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { AppBar, Box, Grid, Toolbar, Typography, Paper } from '@mui/material';
+import { Box, Grid, Typography, Paper, Button } from '@mui/material';
 import axios from 'axios';
 import Draggable from 'react-draggable';
 
@@ -15,7 +15,7 @@ const theme = createTheme({
       color: 'black',
       fontSize: 20,
     }
-  },
+  }
 });
 
 var TodoItem = ({description, start, duration, category, status}) => {
@@ -32,31 +32,24 @@ var TodoItem = ({description, start, duration, category, status}) => {
     },
   };
 
-  let categoryStyle1 = {
+  let categoryStyle = {
     display: 'flex',
     alignItems: 'center',
+    width: '50vw',
+    borderRadius: '5px',
+    marginTop: '15px',
     justifyContent: 'center',
-    backgroundColor: '#E64510',
-    paddingLeft: 3,
-    paddingRight: 3
+    backgroundColor: '#E64510'
   };
 
-  let categoryStyle2 = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#46E610',
-    paddingLeft: 3,
-    paddingRight: 3
-  };
 
   let categoryElement;
   if (category === 'category1') {
-    categoryElement = <Box sx={categoryStyle1}>
+    categoryElement = <Box sx={{...categoryStyle, backgroundColor:'#E64510'}}>
       <Typography>{category}</Typography>
     </Box>
   } else if (category == 'category2') {
-    categoryElement = <Box sx={categoryStyle2}>
+    categoryElement = <Box sx={{...categoryStyle, backgroundColor:'#46E610'}}>
       <Typography>{category}</Typography>
     </Box>
   }
@@ -68,7 +61,6 @@ var TodoItem = ({description, start, duration, category, status}) => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
       <Draggable
         onStop={handleStop}
       >
@@ -81,9 +73,9 @@ var TodoItem = ({description, start, duration, category, status}) => {
           flexDirection: 'column',
           backgroundColor: '#944742',}}
         >
-          <Grid container spacing={4}>
+          <Grid container spacing={6}>
             <Grid item xs={12} md={12}>
-              <Paper sx={paperStyle}>
+              <Paper sx={{...paperStyle, height: '300%'}}>
                 <Typography>{description}</Typography>
               </Paper>
             </Grid>
@@ -98,15 +90,19 @@ var TodoItem = ({description, start, duration, category, status}) => {
               </Paper>
             </Grid>
             <Grid item xs={2} md={2}>
-              <button>Edit</button>
-            </Grid>
-            <Grid item xs={12} md={12}>
-              {categoryElement}
+              <Button 
+                style={{height: '20px'}}
+                variant="contained"
+                color="green"
+                onClick={() => console.log('edit clicked')}
+              >
+                Edit
+              </Button>
             </Grid>
           </Grid>
+          {categoryElement}
         </Box>
       </Draggable>
-    </ThemeProvider>
   )
 }
 

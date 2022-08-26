@@ -18,6 +18,14 @@ const theme = createTheme({
       fontSize: 40,
     }
   },
+  palette: {
+    green: {
+      main: '#3EAA1A'
+    },
+    category1: {
+      main: '#3EAA1A'
+    }
+  }
 });
 
 var Display = (props) => {

@@ -1,0 +1,6 @@
+#vertical {
+  display: 'flex';
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-lr;
+}
