@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AppBar, Box, Grid, Toolbar, Typography, Paper } from '@mui/material';
 import axios from 'axios';
-import { useSlotProps } from '@mui/base';
+import Draggable from 'react-draggable';
 
 const theme = createTheme({
   typography: {
@@ -32,58 +32,80 @@ var TodoItem = ({description, start, duration, category, status}) => {
     },
   };
 
-  const colorMap = {
-    'category1': '#E64510',
-    'category2': '#46E610'
-  }
-
-  let categoryStyle = {
+  let categoryStyle1 = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: `${colorMap[status]}`,
+    backgroundColor: '#E64510',
     paddingLeft: 3,
     paddingRight: 3
   };
 
+  let categoryStyle2 = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#46E610',
+    paddingLeft: 3,
+    paddingRight: 3
+  };
+
+  let categoryElement;
+  if (category === 'category1') {
+    categoryElement = <Box sx={categoryStyle1}>
+      <Typography>{category}</Typography>
+    </Box>
+  } else if (category == 'category2') {
+    categoryElement = <Box sx={categoryStyle2}>
+      <Typography>{category}</Typography>
+    </Box>
+  }
   
+  function handleStop(e) {
+    if (e.toElement.id === 'addToCalendar') {
+      console.log('handling stop', e.toElement.id);
+    }
+  }
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{
-        display: 'flex',
-        width: '50vw',
-        margin: '5px',
-        alignItems: 'center',
-        flexDirection: 'column',
-        backgroundColor: '#944742',}}
+      <Draggable
+        onStop={handleStop}
       >
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={12}>
-            <Paper sx={paperStyle}>
-              <Typography>{description}</Typography>
-            </Paper>
+        <Box sx={{
+          display: 'flex',
+          width: '50vw',
+          margin: '5px',
+          borderRadius: '5px',
+          alignItems: 'center',
+          flexDirection: 'column',
+          backgroundColor: '#944742',}}
+        >
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={12}>
+              <Paper sx={paperStyle}>
+                <Typography>{description}</Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={5} md={5}>
+              <Paper sx={paperStyle}>
+                <Typography>Start: {start}</Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={5} md={5}>
+              <Paper sx={paperStyle}>
+                <Typography>Duration: {duration}</Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={2} md={2}>
+              <button>Edit</button>
+            </Grid>
+            <Grid item xs={12} md={12}>
+              {categoryElement}
+            </Grid>
           </Grid>
-          <Grid item xs={5} md={5}>
-            <Paper sx={paperStyle}>
-              <Typography>Start: {start}</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={5} md={5}>
-            <Paper sx={paperStyle}>
-              <Typography>Duration: {duration}</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={2} md={2}>
-            <button>Edit</button>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <Paper sx={categoryStyle}>
-              <Typography>{category}</Typography>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Box>
+        </Box>
+      </Draggable>
     </ThemeProvider>
   )
 }

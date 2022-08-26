@@ -20,7 +20,7 @@ const theme = createTheme({
   },
 });
 
-var Display = (props) => {
+var PendingDisplay = (props) => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -45,22 +45,33 @@ var Display = (props) => {
       </Paper>
       <Box sx={{
         display: 'flex',
-        position: 'relative',
-        height: props.maxHeight,
-        maxHeight: props.maxHeight,
-        overflow: 'auto',
-        width: '70vw',
-        alignItems: 'center',
-        marginBottom: '10px',
-        flexDirection: 'column',
-        backgroundColor: '#161B2E',}}
-      >
-        {todos.map((todo, idx) => {
-          return <TodoItem key={idx} description={todo.description} start={todo.start} duration={todo.duration} category={todo.category} status={todo.status}/>
-        })}
+        flexDirection: 'row',
+      }}>
+        <Box sx={{
+          display: 'flex',
+          position: 'relative',
+          height: props.maxHeight,
+          maxHeight: props.maxHeight,
+          overflow: 'auto',
+          width: '65vw',
+          alignItems: 'center',
+          marginBottom: '10px',
+          flexDirection: 'column',
+          backgroundColor: '#161B2E',}}
+        >
+          {todos.map((todo, idx) => {
+            return <TodoItem key={idx} description={todo.description} start={todo.start} duration={todo.duration} category={todo.category} status={todo.status}/>
+          })}
+        </Box>
+        <Box id={'addToCalendar'} sx={{
+          backgroundColor: '#00FF00',
+          width: '5vw',
+        }}>
+          Add To Calendar
+        </Box>
       </Box>
     </ThemeProvider>
   )
 }
 
-export default Display
+export default PendingDisplay

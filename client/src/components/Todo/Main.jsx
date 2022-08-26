@@ -4,6 +4,7 @@ import { AppBar, Box, Grid, Toolbar, Typography, IconButton } from '@mui/materia
 import axios from 'axios';
 
 import Display from './Display.jsx';
+import PendingDisplay from './PendingDisplay.jsx';
 
 class Main extends React.Component {
   constructor(props) {
@@ -30,9 +31,10 @@ class Main extends React.Component {
           flexDirection: 'column',
           backgroundColor: '#172B80'}}
         >
+          
           <Display status="Late" maxHeight={'20vh'}></Display>
           <Display status="Active" maxHeight={'20vh'}></Display>
-          <Display status="Pending" maxHeight={'50vh'}></Display>
+          <PendingDisplay status="Pending" maxHeight={'50vh'}></PendingDisplay>
         </Box>
         
       </div>

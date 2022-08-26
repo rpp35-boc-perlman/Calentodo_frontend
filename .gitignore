@@ -1,5 +1,5 @@
 package-lock.json
-client/dist/bundle*
+client/dist/bundle
 # Logs
 logs
 *.log
