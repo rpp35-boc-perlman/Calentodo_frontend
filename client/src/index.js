@@ -31,20 +31,16 @@ class App extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div>
-        <Main />
-=======
       <div style={{background: '#0a0f72'}}>
         <CurrentUserContext.Provider value={{user: this.state.user, setUser: this.setUser}}>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/todo" element={<Main />} />
             </Routes>
           </BrowserRouter>
         </CurrentUserContext.Provider>
->>>>>>> 3e0ff0283a1c72ef470bbbf606e29521010891c9
       </div>
     );
   }
