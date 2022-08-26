@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AppBar, Box, Grid, Toolbar, Typography, Paper } from '@mui/material';
 import axios from 'axios';
+import Draggable from 'react-draggable';
 
 import data from './sampleData.js';
 import TodoItem from './TodoItem.jsx';
@@ -55,7 +56,9 @@ var Display = (props) => {
         backgroundColor: '#161B2E',}}
       >
         {todos.map((todo, idx) => {
-          return <TodoItem key={idx} description={todo.description} start={todo.start} duration={todo.duration} category={todo.category} status={todo.status}/>
+          return <Draggable>
+              <TodoItem key={idx} description={todo.description} start={todo.start} duration={todo.duration} category={todo.category} status={todo.status}/>
+            </Draggable>
         })}
       </Box>
     </ThemeProvider>
