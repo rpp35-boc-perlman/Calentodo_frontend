@@ -1,4 +1,5 @@
 import React from 'react';
+import SingleTodo from './singleTodo';
 
 class TodoList extends React.Component {
   constructor(props) {
@@ -10,6 +11,9 @@ class TodoList extends React.Component {
   render() {
     return (
       <div>
+        {this.props.todos.map((todo) => {
+          return (<SingleTodo todo={todo} />)
+        })}
         {/* render all todos here using the singleTodo component */}
       </div>
     )
