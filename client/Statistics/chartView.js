@@ -52,7 +52,7 @@ class ChartView extends React.Component {
 
   componentDidUpdate(oldProps) {
     //when the component updates its state pass the neccessary chart data to the state
-    if (oldProps.data !== this.props.data) {
+    if (oldProps.activeTodos.length !== this.props.activeTodos.length) {
      this.dataMake()
     }
   }

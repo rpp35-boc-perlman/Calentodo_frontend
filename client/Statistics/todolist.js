@@ -12,7 +12,7 @@ class TodoList extends React.Component {
     return (
       <div>
         {this.props.todos.map((todo) => {
-          return (<SingleTodo todo={todo} />)
+          return (<SingleTodo checkHandler={this.props.checkHandler} key={todo.todo_id} todo={todo} />)
         })}
         {/* render all todos here using the singleTodo component */}
       </div>

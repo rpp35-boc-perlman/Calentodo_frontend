@@ -11,7 +11,7 @@ class Statistics extends React.Component {
       //a user id to retrieve the proper todos
       userId: 9,
       //all todos retrieved each time the tab is opened
-      todos: [ {
+      todos: [{
         "todo_id": 2,
         "start_date": "2001-08-25T07:00:00.000Z",
         "end_date": "2001-08-28T07:00:00.000Z",
@@ -32,8 +32,6 @@ class Statistics extends React.Component {
         "todo_body": "Movie Night",
         "category": null
       }],
-      //an array for inactive(not displayed) todos
-      inactiveTodos: [],
       //an array for active(displayed and rendered) todos
       activeTodos: [
         // {
@@ -62,30 +60,6 @@ class Statistics extends React.Component {
     this.checkHandler = this.checkHandler.bind(this);
   }
 
-  //dummy data
-//  [
-//   {
-//     "todo_id": 2,
-//     "start_date": "2001-08-25T07:00:00.000Z",
-//     "end_date": "2001-08-28T07:00:00.000Z",
-//     "todo_body": "GO VACUUM",
-//     "category": null
-//   },
-//   {
-//     "todo_id": 3,
-//     "start_date": "2001-08-27T07:00:00.000Z",
-//     "end_date": "2001-08-29T07:00:00.000Z",
-//     "todo_body": "Think about life",
-//     "category": null
-//   },
-//   {
-//     "todo_id": 4,
-//     "start_date": "2022-08-28T03:00:00.000Z",
-//     "end_date": "2022-08-28T05:00:00.000Z",
-//     "todo_body": "Movie Night",
-//     "category": null
-//   }
-// ]
 
   componentDidMount() {
     //when the component mounts request the todos using the user id and place them in state
@@ -107,8 +81,35 @@ class Statistics extends React.Component {
   checkHandler(e) {
     //event listener
       //get todo id
-      //if box is set to true(checked), find the todo in the inactive array, and if set to unchecked find in active array
-      //push the todo into the array matching the new state of the checkbox checked(active) unchecked(inactive)
+      var todos = this.state.todos;
+      var id = parseInt(e.target.id);
+      var checked = e.target.checked;
+      //if box is set to true(checked), place a copy of the todo in the active array, if false remove the copy
+      if(checked) {
+        //loop over the todos and find the selected todo
+
+          //once found place a copy in active todos
+
+        this.setState((state, props) => {
+          var newActives = [...state.activeTodos];
+          for(var i = 0; i < todos.length; i++) {
+            if(todos[i].todo_id === id) {
+              newActives.push(todos[i]);
+              return {activeTodos: newActives};
+            }
+          }
+        })
+      } else {
+        this.setState((state, props) => {
+          var newActives = [...state.activeTodos];
+          for(var i = 0; i < newActives.length; i++) {
+            if(newActives[i].todo_id === id) {
+              newActives.splice(i, 1);
+              return {activeTodos: newActives}
+            }
+          }
+        })
+      }
   }
 
   render () {
@@ -116,7 +117,7 @@ class Statistics extends React.Component {
       <div>
         {/* pass the active array to chartview as props */}
         <ChartView activeTodos={this.state.activeTodos}/>
-        <TodoList todos={this.state.todos}/>
+        <TodoList checkHandler={this.checkHandler} todos={this.state.todos}/>
       </div>
     )
   }
