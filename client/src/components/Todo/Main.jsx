@@ -16,8 +16,8 @@ class Main extends React.Component {
     };
   }
 
-  componentDidMount() {
-
+  refresh() {
+    this.forceUpdate();
   }
 
   render() {
@@ -30,11 +30,10 @@ class Main extends React.Component {
           justifyContent: 'space-evenly',
           flexDirection: 'column',
           backgroundColor: '#172B80'}}
-        >
-          
-          <Display status="Late" maxHeight={'20vh'}></Display>
-          <Display status="Active" maxHeight={'20vh'}></Display>
-          <PendingDisplay status="Pending" maxHeight={'50vh'}></PendingDisplay>
+        >  
+          <Display status="Late" refresh={this.refresh.bind(this)} maxHeight={'20vh'}></Display>
+          <Display status="Active" refresh={this.refresh.bind(this)} maxHeight={'20vh'}></Display>
+          <PendingDisplay status="Pending" refresh={this.refresh.bind(this)} maxHeight={'50vh'}></PendingDisplay>
         </Box>
         
       </div>

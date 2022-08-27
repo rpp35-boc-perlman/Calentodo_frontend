@@ -18,18 +18,14 @@ const theme = createTheme({
   }
 });
 
-var TodoItem = ({description, start, duration, category, status}) => {
+var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) => {
   const paperStyle = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#c2c2d6',
     paddingLeft: 3,
-    paddingRight: 3,
-    '&:hover': {
-      backgroundColor: '#8585ad',
-      opacity: [0.9, 0.8, 0.7],
-    },
+    paddingRight: 3
   };
 
   let categoryStyle = {
@@ -56,7 +52,10 @@ var TodoItem = ({description, start, duration, category, status}) => {
   
   function handleStop(e) {
     if (e.toElement.id === 'addToCalendar') {
-      console.log('handling stop', e.toElement.id);
+      console.log('handling stop', todo_id);
+      axios.put(`http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos/${todo_id}`)
+        .then(response => refresh())
+        .catch(err => console.log(err));
     }
   }
 
@@ -73,20 +72,20 @@ var TodoItem = ({description, start, duration, category, status}) => {
           flexDirection: 'column',
           backgroundColor: '#944742',}}
         >
-          <Grid container spacing={6}>
+          <Grid container rowSpacing={6} columnSpacing={2}>
             <Grid item xs={12} md={12}>
               <Paper sx={{...paperStyle, height: '300%'}}>
-                <Typography>{description}</Typography>
+                <Typography>{todo_body}</Typography>
               </Paper>
             </Grid>
             <Grid item xs={5} md={5}>
               <Paper sx={paperStyle}>
-                <Typography>Start: {start}</Typography>
+                <Typography>Start: {start_date.parse()}</Typography>
               </Paper>
             </Grid>
             <Grid item xs={5} md={5}>
               <Paper sx={paperStyle}>
-                <Typography>Duration: {duration}</Typography>
+                <Typography>End: {end_date}</Typography>
               </Paper>
             </Grid>
             <Grid item xs={2} md={2}>

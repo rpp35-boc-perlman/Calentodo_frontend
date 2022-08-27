@@ -4,13 +4,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AppBar, Box, Grid, Toolbar, Typography, Paper } from '@mui/material';
 import axios from 'axios';
 
-import data from './sampleData.js';
 import TodoItem from './TodoItem.jsx';
 
 const theme = createTheme({
   typography: {
-    // In Chinese and Japanese the characters are usually larger,
-    // so a smaller fontsize may be appropriate.
     fontFamily: 'Raleway, Arial',
     fontSize: 12,
     white: {
@@ -34,15 +31,19 @@ var PendingDisplay = (props) => {
 
   useEffect(() => {
     let newTodos = [];
-    for (let todo of data) {
-      if (todo.status === props.status.toLowerCase()) {
-        newTodos.push(todo);
-      }
-    }
-    
-    if (newTodos.length !== todos.length) {
-      setTodos(newTodos);
-    }
+    axios.get('http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos')
+      .then(response => {
+        let data = response.data;
+        for (let todo of data) {
+          if (todo.status === props.status.toLowerCase()) {
+            newTodos.push(todo);
+          }
+        }
+        
+        if (newTodos.length !== todos.length) {
+          setTodos(newTodos);
+        }
+      });
   });
 
   return (
@@ -61,7 +62,8 @@ var PendingDisplay = (props) => {
           position: 'relative',
           height: props.maxHeight,
           maxHeight: props.maxHeight,
-          overflow: 'auto',
+          overflowY: 'auto',
+          overflowX: 'hidden',
           width: '65vw',
           alignItems: 'center',
           marginBottom: '10px',
@@ -69,7 +71,8 @@ var PendingDisplay = (props) => {
           backgroundColor: '#161B2E',}}
         >
           {todos.map((todo, idx) => {
-            return <TodoItem key={idx} description={todo.description} start={todo.start} duration={todo.duration} category={todo.category} status={todo.status}/>
+            return <TodoItem key={idx} todo_id={todo.todo_id} todo_body={todo.todo_body} 
+              start_date={todo.start_date} end_date={todo.end_date} category={todo.category} refresh={() => props.refresh()}/>
           })}
         </Box>
         <Box id={'addToCalendar'} sx={{
