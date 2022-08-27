@@ -22,14 +22,21 @@ class EditModal extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert('submitted');
     event.preventDefault();
   }
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div id='editModal'>
+        <form onSubmit={this.handleSubmit} className='editModalContent'>
+          <span className="close" >
+            &times;
+          </span>
+          <span style={{'left': '45%', 'position': 'absolute'}}>
+            edit todo
+          </span>
+          <br />
           <label>
             Description:
             <input type="text" name='Description'value={this.state.value} onChange={this.handleChange} />
@@ -39,22 +46,22 @@ class EditModal extends React.Component {
             <input type="text" name='Category' value={this.state.value} onChange={this.handleChange} />
           </label>
           <label>
-            Start Time:
-            <input type="time" name='StartTime' value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <label>
             Start Date:
             <input type="date" name='StartDate' value={this.state.value} onChange={this.handleChange} />
           </label>
           <label>
-            End Time:
-            <input type="time" name='EndTime'value={this.state.value} onChange={this.handleChange} />
+            Start Time:
+            <input type="time" name='StartTime' value={this.state.value} onChange={this.handleChange} />
           </label>
           <label>
             End Date:
             <input type="date" name='EndDate' value={this.state.value} onChange={this.handleChange} />
           </label>
-          <input type="submit" value="Submit" />
+          <label>
+            End Time:
+            <input type="time" name='EndTime'value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" style={{'float': 'right'}}/>
         </form>
       </div>
     );
