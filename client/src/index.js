@@ -39,10 +39,10 @@ class App extends React.Component {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/todo" element={<Main />} />
+              <Route path="/statistics" element={<Statistics />}/>
             </Routes>
           </BrowserRouter>
         </CurrentUserContext.Provider>
-        <Statistics />
       </div>
     );
   }
