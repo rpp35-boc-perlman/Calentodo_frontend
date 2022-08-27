@@ -53,7 +53,11 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) =
   function handleStop(e) {
     if (e.toElement.id === 'addToCalendar') {
       console.log('handling stop', todo_id);
-      axios.put(`http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos/${todo_id}`)
+      axios.put(`http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos/activate/${todo_id}`)
+        .then(response => refresh())
+        .catch(err => console.log(err));
+    } else if (e.toElement.id = 'markAsComplete') {
+      axios.put(`http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos/done/${todo_id}`)
         .then(response => refresh())
         .catch(err => console.log(err));
     }
@@ -80,7 +84,7 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) =
             </Grid>
             <Grid item xs={5} md={5}>
               <Paper sx={paperStyle}>
-                <Typography>Start: {start_date.parse()}</Typography>
+                <Typography>Start: {start_date}</Typography>
               </Paper>
             </Grid>
             <Grid item xs={5} md={5}>
