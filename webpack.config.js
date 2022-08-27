@@ -1,6 +1,6 @@
 var path = require('path');
 var CompressionPlugin = require('compression-webpack-plugin');
-const TerserPlugin = require("terser-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, '/client/dist/bundle');
 
@@ -19,7 +19,7 @@ module.exports = {
   devtool: 'eval-source-map',
   output: {
     filename: 'bundle.js',
-    path: DIST_DIR
+    path: DIST_DIR,
   },
   module: {
     rules: [
@@ -27,11 +27,11 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ['@babel/react', '@babel/preset-env']
-          }
-        }
+            presets: ['@babel/react', '@babel/preset-env'],
+          },
+        },
       },
       {
         test: /\.css$/,
@@ -41,19 +41,19 @@ module.exports = {
             loader: 'css-loader',
             options: {
               import: true,
-              modules: true
-            }
-          }
+              modules: true,
+            },
+          },
         ],
-        include: /\.module\.css$/
-      }
-    ]
+        include: /\.css$/,
+      },
+    ],
   },
   plugins: [
     // new CompressionPlugin({
     //   test: /\.js(\?.*)?$/i,
     //   algorithm: "brotliCompress"
     // }),
-    new CompressionPlugin()
-  ]
+    new CompressionPlugin(),
+  ],
 };
