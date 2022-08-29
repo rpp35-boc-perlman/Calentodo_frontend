@@ -2,7 +2,7 @@ import React from 'react';
 import {createContext} from 'react';
 import { createRoot } from 'react-dom/client';
 import axios from 'axios';
-import Statistics from '../Statistics/statistics.js';
+import Statistics from './components/Statistics/statistics.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage';
