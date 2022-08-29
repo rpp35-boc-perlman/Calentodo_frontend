@@ -2,6 +2,7 @@ import React from 'react';
 import {createContext} from 'react';
 import { createRoot } from 'react-dom/client';
 import axios from 'axios';
+import Statistics from './components/Statistics/statistics.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage';
@@ -38,6 +39,7 @@ class App extends React.Component {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/todo" element={<Main />} />
+              <Route path="/statistics" element={<Statistics />}/>
             </Routes>
           </BrowserRouter>
         </CurrentUserContext.Provider>
