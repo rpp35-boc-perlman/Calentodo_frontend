@@ -4,3 +4,7 @@
   justify-content: center;
   writing-mode: vertical-lr;
 }
+
+.add_icon {
+  transform: scale(1.5);
+}

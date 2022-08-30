@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppBar, Box, Grid, Toolbar, Typography, IconButton } from '@mui/material';
+import { Box, Typography, IconButton, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import axios from 'axios';
 
 import LateDisplay from './LateDisplay.jsx';
@@ -28,6 +29,9 @@ const theme = createTheme({
   palette: {
     green: {
       main: '#3EAA1A'
+    },
+    gray: {
+      main: '#C2D6D1'
     },
     category1: {
       main: '#3EAA1A'
@@ -62,6 +66,9 @@ class Main extends React.Component {
             backgroundColor: '#172B80'}}
           >  
             <Typography variant="white">To-Do List</Typography>
+            <Button color="gray" variant="contained" aria-label="add to-do" style={{width: '30%', marginBottom: '5px'}} onClick={() => console.log('Add clicked')}>
+              <AddCircleIcon className="add_icon"/>
+            </Button>
             <LateDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'}></LateDisplay>
             <ActiveDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'}></ActiveDisplay>
             <PendingDisplay refresh={this.refresh.bind(this)} maxHeight={'40vh'}></PendingDisplay>
