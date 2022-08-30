@@ -30,7 +30,7 @@ class EditModal extends React.Component {
     return (
       <div id='editModal'>
         <form onSubmit={this.handleSubmit} className='editModalContent'>
-          <span className="close" >
+          <span className="close" onClick={this.props.setSeen}>
             &times;
           </span>
           <span style={{'left': '45%', 'position': 'absolute'}}>
