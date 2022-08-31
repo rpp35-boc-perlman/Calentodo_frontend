@@ -93,7 +93,7 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh, se
                 style={{height: '20px'}}
                 variant="contained"
                 color="green"
-                onClick={setSeen}
+                onClick={()=>setSeen(todo_id, todo_body, start_date, end_date, category)}
               >
                 Edit
               </Button>

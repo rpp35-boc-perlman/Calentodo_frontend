@@ -69,7 +69,7 @@ var Display = (props) => {
       >
         {todos.map((todo, idx) => {
           return <TodoItem key={idx} todo_id={todo.todo_id} todo_body={todo.todo_body}
-          start_date={todo.start_date} end_date={todo.end_date} category={todo.category} refresh={() => props.refresh()} setSeen={() => props.setSeen()}/>
+          start_date={todo.start_date} end_date={todo.end_date} category={todo.category} refresh={() => props.refresh()} setSeen={props.setSeen}/>
         })}
       </Box>
     </ThemeProvider>

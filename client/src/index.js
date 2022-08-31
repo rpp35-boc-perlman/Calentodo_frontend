@@ -1,5 +1,4 @@
 import React from 'react';
-import EditModal from './edit_modal/edit.js';
 import {createContext} from 'react';
 import { createRoot } from 'react-dom/client';
 import axios from 'axios';
