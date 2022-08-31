@@ -62,7 +62,7 @@ var PendingDisplay = (props) => {
           height: props.maxHeight,
           maxHeight: props.maxHeight,
         }}>
-          <Typography id="vertical" variant="xsmallWhite" sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Add To Calendar </Typography>
+          <Typography id="vertical" variant="xsmallWhite" sx={{display: 'flex'}}>Add To Calendar </Typography>
         </Box>
       </Box>
     </>

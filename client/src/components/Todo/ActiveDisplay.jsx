@@ -62,7 +62,7 @@ var ActiveDisplay = (props) => {
           height: props.maxHeight,
           maxHeight: props.maxHeight,
         }}>
-          <Typography id="vertical" variant="xsmallWhite" sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Mark As Complete</Typography>
+          <Typography id="vertical" variant="xsmallWhite" sx={{display: 'flex'}}>Mark As Complete</Typography>
         </Box>
       </Box>
     </>
