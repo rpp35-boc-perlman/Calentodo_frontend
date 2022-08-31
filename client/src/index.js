@@ -20,20 +20,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       user: null,
-      seen: false
     };
     this.setUser = this.setUser.bind(this)
-    this.setSeen = this.setSeen.bind(this)
   }
 
   // update state to container the new user data
   // expects and object
    setUser (data) {
     this.setState({user: data})
-  }
-
-  setSeen () {
-    this.setState({seen: !this.state.seen});
   }
 
   render() {
@@ -49,7 +43,6 @@ class App extends React.Component {
           </BrowserRouter>
         </CurrentUserContext.Provider>
         <div>
-          {this.state.seen && <EditModal setSeen={()=>{this.setSeen()}}/>}
           <Main setSeen={()=>{this.setSeen()}}/>
         </div>
       </div>
