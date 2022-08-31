@@ -1,4 +1,4 @@
-client/dist/bundle/
+client/dist/bundle/*
 package-lock.json
 
 # Coverage directory used by tools like istanbul
