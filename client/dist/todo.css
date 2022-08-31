@@ -1,0 +1,11 @@
+#vertical {
+  display: 'flex';
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-lr;
+  margin-left: 35%;
+}
+
+.add_icon {
+  transform: scale(1.5);
+}
