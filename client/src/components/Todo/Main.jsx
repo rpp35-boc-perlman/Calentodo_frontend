@@ -8,6 +8,7 @@ import axios from 'axios';
 import LateDisplay from './LateDisplay.jsx';
 import ActiveDisplay from './ActiveDisplay.jsx';
 import PendingDisplay from './PendingDisplay.jsx';
+import Navigation from '../Navigation/navigation.js'
 
 const theme = createTheme({
   typography: {
@@ -57,7 +58,7 @@ class Main extends React.Component {
     return (
       <div id="Todo">
         <ThemeProvider theme={theme}>
-
+          <Navigation />
           <Box sx={{
             display: 'flex',
             alignItems: 'center',
