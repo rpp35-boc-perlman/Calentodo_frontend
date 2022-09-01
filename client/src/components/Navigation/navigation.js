@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import Paper from '@mui/material/Paper';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+
 
 export default function navigation() {
   const [state, setState] = React.useState({
@@ -29,13 +32,18 @@ export default function navigation() {
       anchor="left"
       open={state.left}
       onClose={toggleDrawer(false)}
-      PaperProps={{ sx:{ width: 30 } }}
+      PaperProps={{ sx:{ bgcolor: 'darkblue', color: 'white' } }}
       children={
-        <nav className="navbar">
-            <div className="nav-link"><Link to="/">Home</Link></div>
-            <div className="nav-link"><Link to="/todo">Todos</Link></div>
-            <div className="nav-link"><Link to="/statistics">Statistics</Link></div>
-        </nav>
+        <Box
+        sx={{
+          width: 120
+        }}>
+          <nav className="navbar">
+              <div className="nav-link"><NavLink className="navlink" to="/">Home</NavLink></div>
+              <div className="nav-link"><NavLink className="navlink" to="/todo">Todos</NavLink></div>
+              <div className="nav-link"><NavLink className="navlink" to="/statistics">Statistics</NavLink></div>
+          </nav>
+        </Box>
       }
       >
       </Drawer>
