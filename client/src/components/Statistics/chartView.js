@@ -17,9 +17,12 @@ class ChartView extends React.Component {
     //when the component updates its state pass the neccessary chart data to the state
       //iterate through props and get the body for each todo
       //these are the labels
+      if (this.props.activeTodos.length === 0) {
+        return;
+      }
       var labels = [];
       var data = {
-        label: 1, //category
+        label: General, //category
         backgroundColor: [],
         data: []
       };
@@ -33,6 +36,9 @@ class ChartView extends React.Component {
           data.backgroundColor.push(this.props.activeTodos[i].color)
         } else {
           data.backgroundColor.push('rgb(66, 135, 245)')
+        }
+        if (this.props.activeTodos[i].category) {
+          data.label = this.props.activeTodos[i].category;
         }
         //convert to unix epoch
         //calculate difference in miliseconds
