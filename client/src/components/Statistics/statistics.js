@@ -1,6 +1,7 @@
 import React from 'react';
 import ChartView from './chartView.js';
 import TodoList from './todolist.js';
+import Navigation from '../Navigation/navigation.js';
 import axios from 'axios';
 
 
@@ -116,6 +117,7 @@ class Statistics extends React.Component {
     return (
       <div>
         {/* pass the active array to chartview as props */}
+        <Navigation />
         <ChartView activeTodos={this.state.activeTodos}/>
         <TodoList checkHandler={this.checkHandler} todos={this.state.todos}/>
       </div>
