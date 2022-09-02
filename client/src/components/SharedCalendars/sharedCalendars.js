@@ -54,7 +54,7 @@ class SharedCalendars extends React.Component {
   render() {
     return(
       <>
-        <calendarList/>
+        <calendarList users={this.state.users}/>
       </>
     )
   }
