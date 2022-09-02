@@ -1,7 +1,6 @@
 import React from 'react';
 import Chart from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 
@@ -10,7 +9,8 @@ class ChartView extends React.Component {
     super(props);
     this.state = {
       labels: [],
-      data: [{backgroundColor:'rgb(66, 135, 245)', data: 0, label: ''}]
+      data: [],
+      display: false
     }
     this.dataMake = this.dataMake.bind(this);
   }
@@ -22,7 +22,8 @@ class ChartView extends React.Component {
       if (this.props.activeTodos.length === 0) {
         this.setState({
           labels: [],
-          data: [{backgroundColor:'rgb(66, 135, 245)', data: 0, label: ''}]
+          data: [],
+          display: false
         })
       } else {
         var labels = [];
@@ -53,7 +54,8 @@ class ChartView extends React.Component {
 
         this.setState({
           labels: labels,
-          data: data
+          data: data,
+          display: true
         });
       }
   }
@@ -71,13 +73,15 @@ class ChartView extends React.Component {
 
   render() {
     return (
-      <Grid item xs={12} sm={10}>
+      <Grid item xs={12} md={10} sx={{ backgroundColor: '#113255', padding: 3  }}>
         <Bar id="statisticsChart" data={
           {
             labels: this.state.labels,
             datasets: [this.state.data]
           }
-        }></Bar>
+        }
+        options={{plugins:{legend:{ display: this.state.display, bodyColor: '#fff'}}}}
+        ></Bar>
       </Grid>
     )
   }
