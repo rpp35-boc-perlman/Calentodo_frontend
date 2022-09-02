@@ -6,36 +6,16 @@ import axios from 'axios';
 
 import TodoItem from './TodoItem.jsx';
 
-const theme = createTheme({
-  typography: {
-    fontFamily: 'Raleway, Arial',
-    fontSize: 12,
-    white: {
-      color: 'white',
-      fontSize: 40,
-    }
-  },
-  palette: {
-    green: {
-      main: '#3EAA1A'
-    },
-    category1: {
-      main: '#3EAA1A'
-    }
-  }
-});
-
-
 var PendingDisplay = (props) => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     let newTodos = [];
-    axios.get('http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos')
+    axios.get('http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=9')
       .then(response => {
         let data = response.data;
         for (let todo of data) {
-          if (todo.status === props.status.toLowerCase()) {
+          if (todo.status === 'pending') {
             newTodos.push(todo);
           }
         }
@@ -47,10 +27,10 @@ var PendingDisplay = (props) => {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <Paper sx={{backgroundColor: '#161B2E', width: '70vw', textAlign: "center", zIndex: '10'}}>
-        <Typography variant="white">
-          {props.status}
+    <>
+      <Paper sx={{backgroundColor: '#43C816', width: '70vw', textAlign: "center", zIndex: '10'}}>
+        <Typography variant="smallWhite">
+          Pending
         </Typography>
       </Paper>
       <Box sx={{
@@ -77,13 +57,15 @@ var PendingDisplay = (props) => {
         </Box>
         <Box id={'addToCalendar'} sx={{
           display: 'flex',
-          backgroundColor: '#00FF00',
+          backgroundColor: '#278A06',
           width: '5vw',
+          height: props.maxHeight,
+          maxHeight: props.maxHeight,
         }}>
-          <Typography id="vertical">ADD TO CALENDAR</Typography>
+          <Typography id="vertical" variant="xsmallWhite" sx={{display: 'flex'}}>Add To Calendar </Typography>
         </Box>
       </Box>
-    </ThemeProvider>
+    </>
   )
 }
 

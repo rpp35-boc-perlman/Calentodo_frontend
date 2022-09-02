@@ -7,13 +7,30 @@ import Draggable from 'react-draggable';
 
 const theme = createTheme({
   typography: {
-    // In Chinese and Japanese the characters are usually larger,
-    // so a smaller fontsize may be appropriate.
     fontFamily: 'Raleway, Arial',
     fontSize: 12,
-    black: {
-      color: 'black',
+    white: {
+      color: 'white',
+      fontSize: 40,
+    },
+    smallWhite: {
+      color: 'white',
+      fontSize: 30,
+    },
+    xsmallWhite: {
+      color: 'white',
       fontSize: 20,
+    }
+  },
+  palette: {
+    green: {
+      main: '#3EAA1A'
+    },
+    gray: {
+      main: '#C2D6D1'
+    },
+    category1: {
+      main: '#3EAA1A'
     }
   }
 });
@@ -51,26 +68,33 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh, se
   }
 
   function handleStop(e) {
+    console.log(e.toElement.id);
     if (e.toElement.id === 'addToCalendar') {
       console.log('handling stop', todo_id);
-      axios.put(`http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos/${todo_id}`)
+      axios.put(`http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos/activate/${todo_id}`)
+        .then(response => refresh())
+        .catch(err => console.log(err));
+    } else if (e.toElement.id === 'markAsComplete') {
+      axios.put(`http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos/done/${todo_id}`)
         .then(response => refresh())
         .catch(err => console.log(err));
     }
   }
 
   return (
+    <ThemeProvider theme={theme}>
+
       <Draggable
         onStop={handleStop}
       >
-        <Box sx={{
+        <Box id={'todoItem'} sx={{
           display: 'flex',
           width: '50vw',
           margin: '5px',
           borderRadius: '5px',
           alignItems: 'center',
           flexDirection: 'column',
-          backgroundColor: '#944742',}}
+          backgroundColor: '#944742'}}
         >
           <Grid container rowSpacing={6} columnSpacing={2}>
             <Grid item xs={12} md={12}>
@@ -102,6 +126,7 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh, se
           {categoryElement}
         </Box>
       </Draggable>
+    </ThemeProvider>
   )
 }
 

@@ -1,36 +1,41 @@
 let data = [
   {
-    'description': 'todo1',
-    'start': 1661023689876,
-    'duration': 3600000,
+    'todo_id': 1,
+    'todo_body': 'todo1',
+    'start_date': 1661023689876,
+    'end_date': 1661023689876,
     'category': 'category1',
     'status': 'late'
   },
   {
-    'description': 'todo2',
-    'start': 1661023689876,
-    'duration': 3600000,
+    'todo_id': 2,
+    'todo_body': 'todo2',
+    'start_date': 1661023689876,
+    'end_date': 1661023689876,
     'category': 'category2',
     'status': 'late'
   },
   {
-    'description': 'todo3',
-    'start': 1661023689876,
-    'duration': 3600000,
+    'todo_id': 3,
+    'todo_body': 'todo3',
+    'start_date': 1661023689876,
+    'end_date': 1661023689876,
     'category': 'category1',
     'status': 'pending'
   },
   {
-    'description': 'todo4',
-    'start': 1661023689876,
-    'duration': 3600000,
+    'todo_id': 4,
+    'todo_body': 'todo4',
+    'start_date': 1661023689876,
+    'end_date': 1661023689876,
     'category': 'category5',
     'status': 'pending'
   },
   {
-    'description': 'todo6',
-    'start': 1661023689876,
-    'duration': 3600000,
+    'todo_id': 5,
+    'todo_body': 'todo6',
+    'start_date': 1661023689876,
+    'end_date': 1661023689876,
     'category': 'category2',
     'status': 'pending'
   }
