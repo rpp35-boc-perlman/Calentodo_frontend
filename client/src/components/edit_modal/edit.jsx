@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 class EditModal extends React.Component {
   constructor(props) {
@@ -26,25 +26,38 @@ class EditModal extends React.Component {
     event.preventDefault();
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const currentItem = nextProps.currentItem;
-    let StartMonth = Number(new Date(currentItem[2].slice(0, -8)).getMonth())+1;
-    if (StartMonth < 10) {
-      StartMonth = StartMonth.toString();
-      StartMonth = '0' + StartMonth;
-    }
-    let Endmonth = Number(new Date(currentItem[3].slice(0, -8)).getMonth())+1;
-    if (Endmonth < 10) {
-      Endmonth = Endmonth.toString();
-      Endmonth = '0' + Endmonth;
-    }
-    return {
-      Description: currentItem[1],
-      Category: currentItem[4]? currentItem[4]: '',
-      StartDate: currentItem[2].slice(8, 12) + '-' + StartMonth + '-' + new Date(currentItem[2].slice(0, -8)).getDate(),
-      StartTime: currentItem[2].slice(-5).replace(' ', '0'),
-      EndDate: currentItem[3].slice(8, 12) + '-' + Endmonth + '-' + new Date(currentItem[3].slice(0, -8)).getDate(),
-      EndTime: currentItem[3].slice(-5).replace(' ', '0')
+  componentDidMount() {
+    const currentItem = this.props.currentItem;
+    if(this.props.addButton) {
+      this.setState({
+        Description: '',
+        Category: '',
+        StartTime: '',
+        StartDate: '',
+        EndTime: '',
+        EndDate: ''
+      })
+    } else {
+      if (currentItem) {
+        let StartMonth = Number(new Date(currentItem[2].slice(0, -8)).getMonth())+1;
+        if (StartMonth < 10) {
+          StartMonth = StartMonth.toString();
+          StartMonth = '0' + StartMonth;
+        }
+        let Endmonth = Number(new Date(currentItem[3].slice(0, -8)).getMonth())+1;
+        if (Endmonth < 10) {
+          Endmonth = Endmonth.toString();
+          Endmonth = '0' + Endmonth;
+        }
+        this.setState({
+            Description: currentItem[1],
+            Category: currentItem[4]? currentItem[4]: '',
+            StartDate: currentItem[2].slice(8, 12) + '-' + StartMonth + '-' + new Date(currentItem[2].slice(0, -8)).getDate(),
+            StartTime: currentItem[2].slice(-5).replace(' ', '0'),
+            EndDate: currentItem[3].slice(8, 12) + '-' + Endmonth + '-' + new Date(currentItem[3].slice(0, -8)).getDate(),
+            EndTime: currentItem[3].slice(-5).replace(' ', '0')
+        })
+      }
     }
   }
 
