@@ -1,68 +1,52 @@
-// import { Link } from 'react-router-dom';
-// import React from 'react';
-// import axios from 'axios';
+import { NavLink } from 'react-router-dom';
+import React from 'react';
+import axios from 'axios';
+import Drawer from '@mui/material/Drawer';
+import Button from '@mui/material/Button';
+import MenuIcon from '@mui/icons-material/Menu';
+import Paper from '@mui/material/Paper';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
-// export default function navigation() {
-//   return (<div>
-//     <nav className="navbar">
-//       <Link className="link" to="/">Home</Link>
-//       <Link className="link" to="/todo">Todos</Link>
-//       <Link className="link" to="/statistics">Statistics</Link>
-//     </nav>
-//   </div>)
-// }
 
-import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  CssBaseline,
-  Typography,
-} from "@mui/material";
-import { Link } from "react-router-dom";
+export default function navigation() {
+  const [state, setState] = React.useState({
+    left: false
+  });
 
-function Navbar() {
-  let link = {
-    textDecoration: "none",
-    color: "white",
-    fontSize: "20px",
-    marginLeft: "20px",
-    "&:hover": {
-      color: "yellow",
-      borderBottom: "1px solid white",
-    },
-  };
-  
-  let logo = {
-    flexGrow: "1",
-    cursor: "pointer",
-  };
+  const toggleDrawer = (open) => (e) => {
+    if (e.type === 'keydown' && (e.key === 'Tab' || e.key === 'Shift')) {
+      return;
+    }
 
-  let navlinks = {
-    marginLeft: "10px",
-    display: "flex",
-  };
+    setState({ left: open });
+  }
 
   return (
-    <AppBar position="static">
-      <CssBaseline />
-      <Toolbar>
-        <Typography variant="h4" sx={logo}>
-          <Link to="/" style={link}>
-            Home
-          </Link>
-        </Typography>
-          <div >
-            <Link to="/todo" style={link}>
-              Todos
-            </Link>
-            <Link to="/statistics" style={link}>
-              Statistics
-            </Link>
-          </div>
-      </Toolbar>
-    </AppBar>
-  );
+  <div>
+    <React.Fragment key="left">
+      <Button onClick={toggleDrawer(true)} variant="outlined" size="small">
+        <MenuIcon />
+      </Button>
+      <Drawer
+      anchor="left"
+      open={state.left}
+      onClose={toggleDrawer(false)}
+      PaperProps={{ sx:{ bgcolor: 'darkblue', color: 'white' } }}
+      children={
+        <Box
+        sx={{
+          width: 120
+        }}>
+          <nav className="navbar">
+              <div className="nav-link"><NavLink className="navlink" to="/">Home</NavLink></div>
+              <div className="nav-link"><NavLink className="navlink" to="/todo">Todos</NavLink></div>
+              <div className="nav-link"><NavLink className="navlink" to="/statistics">Statistics</NavLink></div>
+          </nav>
+        </Box>
+      }
+      >
+      </Drawer>
+    </React.Fragment>
+  </div>)
 }
-
-export default Navbar;
