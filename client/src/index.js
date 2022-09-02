@@ -4,8 +4,6 @@ import { createRoot } from 'react-dom/client';
 import axios from 'axios';
 
 import TodoCalendar from './pages/calendar.jsx';
-import Statistics from '../Statistics/statistics.js';
-
 
 import Statistics from './components/Statistics/statistics.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
