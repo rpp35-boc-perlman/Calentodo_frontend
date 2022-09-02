@@ -8,6 +8,7 @@ import axios from 'axios';
 import LateDisplay from './LateDisplay.jsx';
 import ActiveDisplay from './ActiveDisplay.jsx';
 import PendingDisplay from './PendingDisplay.jsx';
+import EditModal from '../../edit_modal/edit.jsx';
 import Navigation from '../Navigation/navigation.js'
 
 const theme = createTheme({
@@ -46,12 +47,21 @@ class Main extends React.Component {
     this.state = {
       late: [],
       active: [],
-      pending: []
+      pending: [],
+      seen: false
     };
+    this.setSeen = this.setSeen.bind(this);
   }
 
   refresh() {
     this.forceUpdate();
+  }
+
+  setSeen (todo_id, todo_body, start_date, end_date, category) {
+    if([...arguments].length) {
+      this.setState({currentItem: [...arguments]})
+    }
+    this.setState({seen: !this.state.seen});
   }
 
   render() {
@@ -65,14 +75,15 @@ class Main extends React.Component {
             justifyContent: 'space-evenly',
             flexDirection: 'column',
             backgroundColor: '#172B80'}}
-          >  
+          >
             <Typography variant="white">To-Do List</Typography>
             <Button color="gray" variant="contained" aria-label="add to-do" style={{width: '30%', marginBottom: '5px'}} onClick={() => console.log('Add clicked')}>
               <AddCircleOutlineIcon className="add_icon"/>
             </Button>
-            <LateDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'}></LateDisplay>
-            <ActiveDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'}></ActiveDisplay>
-            <PendingDisplay refresh={this.refresh.bind(this)} maxHeight={'40vh'}></PendingDisplay>
+            {this.state.seen && <EditModal setSeen={()=>{this.setSeen()}} currentItem={this.state.currentItem}/>}
+            <LateDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'} setSeen={this.setSeen}></LateDisplay>
+            <ActiveDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'} setSeen={this.setSeen}></ActiveDisplay>
+            <PendingDisplay refresh={this.refresh.bind(this)} maxHeight={'40vh'} setSeen={this.setSeen}></PendingDisplay>
           </Box>
         </ThemeProvider>
       </div>
