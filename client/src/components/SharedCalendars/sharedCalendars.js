@@ -1,5 +1,5 @@
 import React from 'react';
-import calendarList from './calendarList';
+import CalendarList from './calendarList';
 
 
 class SharedCalendars extends React.Component {
@@ -8,7 +8,7 @@ class SharedCalendars extends React.Component {
     // dummy testing data
     this.state = {
 
-      "users": [
+      users: [
         {
           "user_id": 9,
           "user_email": "tyrone@test.com",
@@ -46,15 +46,39 @@ class SharedCalendars extends React.Component {
           "user_id": 13,
           "user_email": "me@test.com"
         }
-      ]
+      ],
+      visibleUsers: [],
+      checkedState: []
     }
+    this.handleOnChange = this.handleOnChange.bind(this);
 
   }
+
+  componentDidMount() {
+    this.setState({
+      checkedState: new Array(this.state.users.length).fill(false)
+    })
+  }
+
+  handleOnChange(position) {
+    console.log('clicked')
+    const updatedCheckedState = this.state.checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+    this.setState({
+      checkedState: updatedCheckedState
+    })
+  }
+
+
 
   render() {
     return(
       <>
-        <calendarList users={this.state.users}/>
+        <CalendarList users={this.state.users}
+        handleOnChange={this.handleOnChange}
+        checkedState={this.state.checkedState}
+        />
       </>
     )
   }

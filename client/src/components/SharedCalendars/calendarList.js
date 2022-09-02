@@ -1,11 +1,15 @@
 import React from 'react';
 import CalendarItem from './calendarItem';
 
-const calendarList = (props) => {
+const calendarList = ({users, handleOnChange, checkedState}) => {
   return (
-    <ul class="mdc-list" role="group" aria-label="List with checkbox items">
-      {this.props.users.map(user => (
-        <CalendarItem user={user} />
+    <ul >
+      {users.map((user, index) => (
+
+        <CalendarItem user={user}
+        handleOnChange={handleOnChange}
+        checkedState={checkedState}
+        index={index}/>
       ))}
 
     </ul>

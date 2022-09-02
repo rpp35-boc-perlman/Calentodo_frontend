@@ -8,6 +8,7 @@ export default function navigation() {
       <Link className="link" to="/">Home</Link>
       <Link className="link" to="/todo">Todos</Link>
       <Link className="link" to="/statistics">Statistics</Link>
+      <Link className="link" to="/sharedCalendars">SharedCalendars</Link>
     </nav>
   </div>)
 }
