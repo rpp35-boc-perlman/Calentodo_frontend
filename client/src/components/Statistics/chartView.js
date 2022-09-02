@@ -1,6 +1,8 @@
 import React from 'react';
 import Chart from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 
 class ChartView extends React.Component {
@@ -69,14 +71,14 @@ class ChartView extends React.Component {
 
   render() {
     return (
-      <div>
+      <Grid item xs={12} sm={10}>
         <Bar id="statisticsChart" data={
           {
             labels: this.state.labels,
             datasets: [this.state.data]
           }
         }></Bar>
-      </div>
+      </Grid>
     )
   }
 }

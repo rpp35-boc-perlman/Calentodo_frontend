@@ -1,5 +1,6 @@
 import React from 'react';
 import SingleTodo from './singleTodo';
+import Grid from '@mui/material/Grid';
 
 class TodoList extends React.Component {
   constructor(props) {
@@ -10,12 +11,12 @@ class TodoList extends React.Component {
 
   render() {
     return (
-      <div>
+      <Grid item xs={2}>
         {this.props.todos.map((todo) => {
           return (<SingleTodo checkHandler={this.props.checkHandler} key={todo.todo_id} todo={todo} />)
         })}
         {/* render all todos here using the singleTodo component */}
-      </div>
+      </Grid>
     )
   }
 }

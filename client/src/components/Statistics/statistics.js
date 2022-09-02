@@ -3,6 +3,8 @@ import ChartView from './chartView.js';
 import TodoList from './todolist.js';
 import Navigation from '../Navigation/navigation.js';
 import axios from 'axios';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 
 class Statistics extends React.Component {
@@ -73,8 +75,10 @@ class Statistics extends React.Component {
       <div>
         {/* pass the active array to chartview as props */}
         <Navigation />
-        <ChartView activeTodos={this.state.activeTodos}/>
-        <TodoList checkHandler={this.checkHandler} todos={this.state.todos}/>
+        <Grid container spacing={1}>
+          <ChartView activeTodos={this.state.activeTodos}/>
+          <TodoList checkHandler={this.checkHandler} todos={this.state.todos}/>
+        </Grid>
       </div>
     )
   }
