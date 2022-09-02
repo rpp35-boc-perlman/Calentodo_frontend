@@ -11,7 +11,7 @@ var PendingDisplay = (props) => {
 
   useEffect(() => {
     let newTodos = [];
-    axios.get('http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos')
+    axios.get('http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=9')
       .then(response => {
         let data = response.data;
         for (let todo of data) {
