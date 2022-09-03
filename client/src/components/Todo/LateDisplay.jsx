@@ -19,7 +19,7 @@ var LateDisplay = (props) => {
             newTodos.push(todo);
           }
         }
-        
+
         if (newTodos.length !== todos.length) {
           setTodos(newTodos);
         }
@@ -51,8 +51,8 @@ var LateDisplay = (props) => {
           backgroundColor: '#161B2E',}}
         >
           {todos.map((todo, idx) => {
-            return <TodoItem key={idx} todo_id={todo.todo_id} todo_body={todo.todo_body} 
-              start_date={todo.start_date} end_date={todo.end_date} category={todo.category} refresh={() => props.refresh()}/>
+            return <TodoItem key={idx} todo_id={todo.todo_id} todo_body={todo.todo_body}
+              start_date={todo.start_date} end_date={todo.end_date} category={todo.category} refresh={() => props.refresh()} setSeen={props.setSeen}/>
           })}
         </Box>
         <Box id={'markAsComplete'} sx={{
