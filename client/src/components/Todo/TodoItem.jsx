@@ -35,7 +35,7 @@ const theme = createTheme({
   }
 });
 
-var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) => {
+var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh, setSeen}) => {
   const paperStyle = {
     display: 'flex',
     alignItems: 'center',
@@ -66,7 +66,7 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) =
       <Typography>{category}</Typography>
     </Box>
   }
-  
+
   function handleStop(e) {
     console.log(e.toElement.id);
     if (e.toElement.id === 'addToCalendar') {
@@ -113,11 +113,11 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) =
               </Paper>
             </Grid>
             <Grid item xs={2} md={2}>
-              <Button 
+              <Button
                 style={{height: '20px'}}
                 variant="contained"
                 color="green"
-                onClick={() => console.log('edit clicked')}
+                onClick={()=>setSeen(todo_id, todo_body, start_date, end_date, category)}
               >
                 Edit
               </Button>
