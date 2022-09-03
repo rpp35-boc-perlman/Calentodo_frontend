@@ -35,7 +35,7 @@ const theme = createTheme({
   }
 });
 
-var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) => {
+var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh, setSeen}) => {
   const paperStyle = {
     display: 'flex',
     alignItems: 'center',
@@ -57,12 +57,16 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) =
 
 
   let categoryElement;
-  if (category === 'category1') {
+  if (category === 'chore') {
     categoryElement = <Box sx={{...categoryStyle, backgroundColor:'#E64510'}}>
       <Typography>{category}</Typography>
     </Box>
-  } else if (category == 'category2') {
+  } else if (category == 'meditation') {
     categoryElement = <Box sx={{...categoryStyle, backgroundColor:'#46E610'}}>
+      <Typography>{category}</Typography>
+    </Box>
+  }  else if (category == 'study') {
+    categoryElement = <Box sx={{...categoryStyle, backgroundColor:'#ECA418'}}>
       <Typography>{category}</Typography>
     </Box>
   } else {
@@ -70,7 +74,7 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) =
       <Typography>Not Categorized</Typography>
     </Box>
   }
-  
+
   function handleStop(e) {
     console.log(e.toElement.id);
     if (e.toElement.id === 'addToCalendar') {
@@ -117,11 +121,11 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) =
               </Paper>
             </Grid>
             <Grid item xs={2} md={2}>
-              <Button 
+              <Button
                 style={{height: '20px'}}
                 variant="contained"
                 color="green"
-                onClick={() => console.log('edit clicked')}
+                onClick={()=>setSeen(todo_id, todo_body, start_date, end_date, category)}
               >
                 Edit
               </Button>
