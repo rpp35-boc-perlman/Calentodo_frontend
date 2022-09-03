@@ -9,8 +9,16 @@ import TodoItem from './TodoItem.jsx';
 var ActiveDisplay = (props) => {
   const [todos, setTodos] = useState([]);
 
+  const config = {
+    url: '/api/',
+    method: 'get',
+    headers: {
+      target: 'http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=9'
+    }
+  }
+
   useEffect(() => {
-    axios.get('http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=9')
+    axios(config)
     .then(response => {
         let newTodos = [];
         let data = response.data;

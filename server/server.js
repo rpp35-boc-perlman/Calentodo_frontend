@@ -18,7 +18,7 @@ app.get('/status', (req,res,next) => {
     res.status(200).send('up')
 });
 
-const proxyUrl = 'http://userservice-env.eba-fa8rm3ph.us-east-2.elasticbeanstalk.com'
+const proxyUrl = 'http://userservice-env.eba-fa8rm3ph.us-east-2.elasticbeanstalk.com/'
 // routes
 // user service proxy
 const apiProxy = proxy(proxyUrl, {
