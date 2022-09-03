@@ -25,7 +25,7 @@ export default function navigation() {
   return (
   <div>
     <React.Fragment key="left">
-      <Button onClick={toggleDrawer(true)} variant="outlined" size="small">
+      <Button onClick={toggleDrawer(true)} variant="contained" size="small">
         <MenuIcon />
       </Button>
       <Drawer

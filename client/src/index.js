@@ -35,7 +35,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{background: '#0a0f72'}}>
+      <div>
         <CurrentUserContext.Provider value={{user: this.state.user, setUser: this.setUser}}>
           <BrowserRouter>
             <Routes>
