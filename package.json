@@ -1,15 +1,14 @@
 {
   "name": "calentodo_frontend",
   "version": "1.0.0",
-  "description": "Calentodo frontend and proxy server",
+  "description": "Calentodo front-end and proxy server",
   "main": "babel.config.js",
   "scripts": {
-    "test": "jest",
-    "coverage": "jest --coverage",
-    "start": "NODE_ENV=PROD node server/www.js",
+    "test": "jest --coverage",
+    "start": "node NODE_ENV=PROD server/www.js",
+    "dev": "nodemon NODE_ENV=DEV server/www.js",
     "react-dev": "webpack --mode development --watch",
-    "build": "webpack --mode production",
-    "dev": "nodemon server/www.js"
+    "deploy": "webpack --mode production && node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -29,11 +28,13 @@
     "@mui/material": "^5.10.1",
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
+    "css-loader": "^6.7.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-http-proxy": "^1.6.3",
     "hoist-non-react-statics": "^3.3.2",
     "i": "^0.3.7",
+    "jest": "^28.1.3",
     "moment": "^2.29.4",
     "morgan": "^1.10.0",
     "npm": "^8.18.0",
@@ -43,7 +44,8 @@
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.5",
     "react-router-dom": "^6.3.0",
-    "react-transition-group": "^4.4.5"
+    "react-transition-group": "^4.4.5",
+    "style-loader": "^3.3.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.18.10",

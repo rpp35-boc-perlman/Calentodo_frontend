@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
-
+import Navigation from '../components/Navigation/navigation.js';
 import moment from 'moment';
 // import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios';
@@ -13,13 +13,20 @@ const TodoCalendar = () => {
     {
       start_date: new Date(),
       end_date: moment().add(1, 'hours').toDate(),
-      todo_body: 'test event',
+      todo_body: 'test event 2',
     },
   ]);
+  const config = {
+    url: '/api/',
+    method: 'get',
+    headers: {
+      target:
+        'http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=9',
+    },
+  };
   useEffect(
     (args) => {
-      axios
-        .get('/api/todos')
+      axios(config)
         .then((results) => {
           setTodos(results.data);
           console.log(results);
@@ -33,6 +40,7 @@ const TodoCalendar = () => {
 
   return (
     <>
+      <Navigation />
       <Calendar
         defaultDate={moment().toDate()}
         defaultView="month"
@@ -47,7 +55,6 @@ const TodoCalendar = () => {
           };
         })}
       />
-      <Navigation />
     </>
   );
 };
