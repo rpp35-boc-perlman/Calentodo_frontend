@@ -84,7 +84,7 @@ class Main extends React.Component {
             <Button color="gray" variant="contained" aria-label="add to-do" style={{width: '30%', marginBottom: '5px'}} onClick={() => this.setSeen()}>
               <AddCircleOutlineIcon className="add_icon"/>
             </Button>
-            {this.state.seen && <EditModal setSeen={()=>{this.setSeen()}} currentItem={this.state.currentItem} addButton={this.state.addButton}/>}
+            {this.state.seen && <EditModal setSeen={()=>{this.setSeen()}} currentItem={this.state.currentItem} addButton={this.state.addButton} refresh={this.refresh.bind(this)}/>}
             <LateDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'} setSeen={this.setSeen}></LateDisplay>
             <ActiveDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'} setSeen={this.setSeen}></ActiveDisplay>
             <PendingDisplay refresh={this.refresh.bind(this)} maxHeight={'40vh'} setSeen={this.setSeen}></PendingDisplay>

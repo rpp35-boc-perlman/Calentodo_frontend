@@ -34,3 +34,7 @@
   color: red;
   cursor: pointer;
 }
+
+.editSubmit:hover {
+  cursor: pointer;
+}
