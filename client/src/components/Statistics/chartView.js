@@ -1,6 +1,7 @@
 import React from 'react';
 import Chart from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
+import Grid from '@mui/material/Grid';
 
 
 class ChartView extends React.Component {
@@ -8,7 +9,8 @@ class ChartView extends React.Component {
     super(props);
     this.state = {
       labels: [],
-      data: []
+      data: [],
+      display: false
     }
     this.dataMake = this.dataMake.bind(this);
   }
@@ -17,33 +19,45 @@ class ChartView extends React.Component {
     //when the component updates its state pass the neccessary chart data to the state
       //iterate through props and get the body for each todo
       //these are the labels
-      var labels = [];
-      var data = {
-        label: 1, //category
-        backgroundColor: [],
-        data: []
-      };
+      if (this.props.activeTodos.length === 0) {
+        this.setState({
+          labels: [],
+          data: [],
+          display: false
+        })
+      } else {
+        var labels = [];
+        var data = {
+          label: 'General', //category
+          backgroundColor: [],
+          data: []
+        };
 
-      for (var i = 0; i < this.props.activeTodos.length; i++) {
-        //get start and end date from todo
-        var start = new Date(this.props.activeTodos[i].start_date).getTime();
-        var end = new Date(this.props.activeTodos[i].end_date).getTime();
-        data.data.push(Math.round(Math.abs(end - start) / 3600000))
-        if (this.props.activeTodos[i].color) {
-          data.backgroundColor.push(this.props.activeTodos[i].color)
-        } else {
-          data.backgroundColor.push('rgb(66, 135, 245)')
+        for (var i = 0; i < this.props.activeTodos.length; i++) {
+          //get start and end date from todo
+          var start = new Date(this.props.activeTodos[i].start_date).getTime();
+          var end = new Date(this.props.activeTodos[i].end_date).getTime();
+          data.data.push(Math.round(Math.abs(end - start) / 3600000))
+          if (this.props.activeTodos[i].color) {
+            data.backgroundColor.push(this.props.activeTodos[i].color)
+          } else {
+            data.backgroundColor.push('rgb(66, 135, 245)')
+          }
+          if (this.props.activeTodos[i].category) {
+            data.label = this.props.activeTodos[i].category;
+          }
+          //convert to unix epoch
+          //calculate difference in miliseconds
+          //convert to hours
+          labels.push(this.props.activeTodos[i].todo_body);
         }
-        //convert to unix epoch
-        //calculate difference in miliseconds
-        //convert to hours
-        labels.push(this.props.activeTodos[i].todo_body);
-      }
 
-      this.setState({
-        labels: labels,
-        data: data
-      });
+        this.setState({
+          labels: labels,
+          data: data,
+          display: true
+        });
+      }
   }
 
   componentDidMount() {
@@ -59,14 +73,16 @@ class ChartView extends React.Component {
 
   render() {
     return (
-      <div>
+      <Grid item xs={12} md={10} sx={{ backgroundColor: '#113255', padding: 3  }}>
         <Bar id="statisticsChart" data={
           {
             labels: this.state.labels,
             datasets: [this.state.data]
           }
-        }></Bar>
-      </div>
+        }
+        options={{plugins:{legend:{ display: this.state.display, bodyColor: '#fff'}}}}
+        ></Bar>
+      </Grid>
     )
   }
 }
