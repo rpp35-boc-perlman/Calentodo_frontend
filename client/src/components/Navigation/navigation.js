@@ -43,7 +43,7 @@ export default function navigation() {
               <div className="bug"><UserBug /></div>
               <div className="nav-link"><NavLink className="navlink" to="/">Home</NavLink></div>
               <div className="nav-link"><NavLink className="navlink" to="/login">Login</NavLink></div>
-              <div className="nav-link"><NavLink className="navlink" to="/todo">Todos</NavLink></div>
+              {/* <div className="nav-link"><NavLink className="navlink" to="/todo">Todos</NavLink></div> */}
               <div className="nav-link"><NavLink className="navlink" to="/calendar">Calendar</NavLink></div>
               <div className="nav-link"><NavLink className="navlink" to="/statistics">Statistics</NavLink></div>
           </nav>
