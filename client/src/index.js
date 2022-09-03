@@ -46,12 +46,9 @@ class App extends React.Component {
               <Route path="/login" element={<LoginPage />} />
               {/* <Route path="/todo" element={<Main />} /> */}
               <Route path="/calendar" element={<TodoCalendar />} />
-<<<<<<< HEAD
               <Route path="/statistics" element={<Statistics />} />
-=======
               <Route path="/statistics" element={<Statistics />}/>
-              <Route path="/sharedCalendars" element={<SharedCalendars />}/>
->>>>>>> 5e258ed8bfe3cfd00cffdbf697f83d86cb8e6fe2
+              <Route path="/sharedCalendars" element={<SharedCalendars />} />
             </Routes>
           </BrowserRouter>
         </CurrentUserContext.Provider>
