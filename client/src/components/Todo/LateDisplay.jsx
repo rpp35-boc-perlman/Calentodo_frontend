@@ -15,12 +15,12 @@ var LateDisplay = (props) => {
       .then(response => {
         let data = response.data;
         for (let todo of data) {
-          if (todo.status === 'late') {
+          if (todo.status === 'late' || new Date(todo.start_date) > Date.now()) {
             newTodos.push(todo);
           }
         }
 
-        if (newTodos.length !== todos.length) {
+        if (JSON.stringify(newTodos) !== JSON.stringify(todos)) {
           setTodos(newTodos);
         }
       });
