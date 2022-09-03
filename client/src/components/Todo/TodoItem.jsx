@@ -57,12 +57,16 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh, se
 
 
   let categoryElement;
-  if (category === 'category1') {
+  if (category === 'chore') {
     categoryElement = <Box sx={{...categoryStyle, backgroundColor:'#E64510'}}>
       <Typography>{category}</Typography>
     </Box>
-  } else if (category == 'category2') {
+  } else if (category == 'meditation') {
     categoryElement = <Box sx={{...categoryStyle, backgroundColor:'#46E610'}}>
+      <Typography>{category}</Typography>
+    </Box>
+  }  else if (category == 'study') {
+    categoryElement = <Box sx={{...categoryStyle, backgroundColor:'#ECA418'}}>
       <Typography>{category}</Typography>
     </Box>
   } else {
