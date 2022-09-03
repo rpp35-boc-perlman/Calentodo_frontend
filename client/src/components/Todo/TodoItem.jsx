@@ -65,6 +65,10 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) =
     categoryElement = <Box sx={{...categoryStyle, backgroundColor:'#46E610'}}>
       <Typography>{category}</Typography>
     </Box>
+  } else {
+    categoryElement = <Box sx={{...categoryStyle, backgroundColor:'#923FD7'}}>
+      <Typography>Not Categorized</Typography>
+    </Box>
   }
   
   function handleStop(e) {
@@ -90,7 +94,7 @@ var TodoItem = ({todo_id, todo_body, start_date, end_date, category, refresh}) =
         <Box id={'todoItem'} sx={{
           display: 'flex',
           width: '50vw',
-          margin: '5px',
+          marginBottom: '20px',
           borderRadius: '5px',
           alignItems: 'center',
           flexDirection: 'column',
