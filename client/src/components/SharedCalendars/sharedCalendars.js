@@ -64,6 +64,9 @@ class SharedCalendars extends React.Component {
     }
     axios(config)
     .then(res => {
+      for (var user of res.data.users) {
+        user.isVisible = false;
+      }
       this.setState({
         users: res.data.users
       },() => console.log(this.state.users, 'users'))
@@ -82,9 +85,13 @@ class SharedCalendars extends React.Component {
     const updatedCheckedState = this.state.checkedState.map((item, index) =>
       index === position ? !item : item
     );
+    const users = [...this.state.users]
+    var user = users[position]
+    user.isVisible = !user.isVisible
     this.setState({
-      checkedState: updatedCheckedState
-    })
+      checkedState: updatedCheckedState,
+      users: users
+    },() => console.log(this.state.users))
   }
 
 
