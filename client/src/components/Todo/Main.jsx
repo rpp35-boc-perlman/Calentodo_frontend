@@ -9,7 +9,7 @@ import LateDisplay from './LateDisplay.jsx';
 import ActiveDisplay from './ActiveDisplay.jsx';
 import PendingDisplay from './PendingDisplay.jsx';
 import EditModal from '../edit_modal/edit.jsx';
-import Navigation from '../Navigation/navigation.js'
+import Navigation from '../Navigation/navigation.js';
 
 const theme = createTheme({
   typography: {
