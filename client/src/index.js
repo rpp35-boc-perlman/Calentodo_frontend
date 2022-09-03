@@ -47,9 +47,6 @@ class App extends React.Component {
             </Routes>
           </BrowserRouter>
         </CurrentUserContext.Provider>
-        <div>
-          <Main setSeen={()=>{this.setSeen()}}/>
-        </div>
       </div>
     );
   }

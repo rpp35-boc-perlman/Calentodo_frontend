@@ -34,7 +34,7 @@ class EditModal extends React.Component {
           EndDate: this.state.EndDate
         }
       })
-      .then(response => this.props.refresh())
+      .then(response => this.props.setSeen())
       .catch(err => console.log(err))
     } else {
       const todo_id = this.props.currentItem[0];
@@ -48,7 +48,7 @@ class EditModal extends React.Component {
           EndDate: this.state.EndDate
         }
       })
-      .then(response => this.props.refresh())
+      .then(response => this.props.setSeen())
       .catch(err => console.log(err))
     }
 
