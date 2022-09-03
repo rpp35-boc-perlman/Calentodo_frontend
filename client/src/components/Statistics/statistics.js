@@ -27,6 +27,9 @@ class Statistics extends React.Component {
     axios({
       method: 'get',
       url: 'http://52.8.24.123:3000/statistics',
+      //headers: {
+      //  target: 'http://52.8.24.123:3000/statistics'
+      //}
       params: {
         user_id: this.state.userId
       }
