@@ -5,7 +5,8 @@ import Navigation from '../components/Navigation/navigation.js'
 export default function Home (props) {
     return(
         <div>
-            <Navigation />
+          <h1>Home</h1>
+          <Navigation />
         </div>
     )
 }
