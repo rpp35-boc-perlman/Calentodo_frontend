@@ -15,12 +15,12 @@ var PendingDisplay = (props) => {
       .then(response => {
         let data = response.data;
         for (let todo of data) {
-          if (todo.status === 'pending') {
+          if (todo.status === 'pending' && new Date(todo.start_date) <= Date.now()) {
             newTodos.push(todo);
           }
         }
 
-        if (newTodos.length !== todos.length) {
+        if (JSON.stringify(newTodos) !== JSON.stringify(todos)) {
           setTodos(newTodos);
         }
       });

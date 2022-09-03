@@ -10,17 +10,17 @@ var ActiveDisplay = (props) => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    let newTodos = [];
     axios.get('http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=9')
-      .then(response => {
+    .then(response => {
+        let newTodos = [];
         let data = response.data;
         for (let todo of data) {
-          if (todo.status === 'active') {
+          if (todo.status === 'active' && new Date(todo.start_date) <= Date.now()) {
             newTodos.push(todo);
           }
         }
 
-        if (newTodos.length !== todos.length) {
+        if (JSON.stringify(newTodos) !== JSON.stringify(todos)) {
           setTodos(newTodos);
         }
       });
