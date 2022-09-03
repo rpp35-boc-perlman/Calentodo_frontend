@@ -8,19 +8,27 @@ import TodoItem from './TodoItem.jsx';
 
 var PendingDisplay = (props) => {
   const [todos, setTodos] = useState([]);
+  
+  const config = {
+    url: '/api/',
+    method: 'get',
+    headers: {
+      target: 'http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=9'
+    }
+  }
 
   useEffect(() => {
-    let newTodos = [];
-    axios.get('http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos')
-      .then(response => {
+    axios(config)
+    .then(response => {
+        let newTodos = [];
         let data = response.data;
         for (let todo of data) {
-          if (todo.status === 'pending') {
+          if (todo.status === 'pending' && new Date(todo.start_date) <= Date.now()) {
             newTodos.push(todo);
           }
         }
-        
-        if (newTodos.length !== todos.length) {
+
+        if (JSON.stringify(newTodos) !== JSON.stringify(todos)) {
           setTodos(newTodos);
         }
       });
@@ -51,8 +59,8 @@ var PendingDisplay = (props) => {
           backgroundColor: '#161B2E',}}
         >
           {todos.map((todo, idx) => {
-            return <TodoItem key={idx} todo_id={todo.todo_id} todo_body={todo.todo_body} 
-              start_date={todo.start_date} end_date={todo.end_date} category={todo.category} refresh={() => props.refresh()}/>
+            return <TodoItem key={idx} todo_id={todo.todo_id} todo_body={todo.todo_body}
+              start_date={todo.start_date} end_date={todo.end_date} category={todo.category} refresh={() => props.refresh()} setSeen={props.setSeen}/>
           })}
         </Box>
         <Box id={'addToCalendar'} sx={{

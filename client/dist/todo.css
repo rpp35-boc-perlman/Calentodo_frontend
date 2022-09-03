@@ -1,3 +1,7 @@
+html {
+  background-color: #0a0f72;
+}
+
 #vertical {
   display: 'flex';
   align-items: center;
@@ -8,4 +12,35 @@
 
 .add_icon {
   transform: scale(1.5);
+}
+
+.nav-link {
+  padding: 10% 5% 10%;
+  border-bottom: solid;
+  border-color: white;
+}
+
+.nav-link:hover {
+  background-color: #dcdedc53;
+}
+
+.navlink {
+  padding: 5px;
+  color: white;
+}
+
+.navlink:link {
+  text-decoration: none;
+}
+
+.navlink:visited {
+  text-decoration: none;
+}
+
+.navlink:hover {
+  text-decoration: none;
+}
+
+.navlink:active {
+  text-decoration: none;
 }

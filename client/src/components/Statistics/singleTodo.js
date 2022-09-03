@@ -1,16 +1,17 @@
 import React from 'react';
+import Box from '@mui/material/Box'
 
 class singleTodo extends React.Component {
   render() {
     return (
-      <>
+      <Box sx={{ display:'flex', backgroundColor: "#4d82bb", margin: 2, borderRadius: 1, padding: 1 }}>
         {/* checkbox */}
         <input type="checkbox" onChange={this.props.checkHandler} key={this.props.todo.todo_id + "_check"} id={this.props.todo.todo_id}></input>
         {/* title of the todo */}
-        <div className="todoBody" key={this.props.todo.todo_id + "_body"}>{this.props.todo.todo_body}</div>
+        <span className="todoBody" key={this.props.todo.todo_id + "_body"}>{this.props.todo.todo_body}</span>
         {/* small box with the corresponding todo color */}
         <div key={this.props.todo.todo_id + "_color"}></div>
-      </>
+      </Box>
     )
   }
 }
