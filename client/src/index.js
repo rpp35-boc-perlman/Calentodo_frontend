@@ -41,9 +41,9 @@ class App extends React.Component {
         >
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Main />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/todo" element={<Main />} />
+              {/* <Route path="/todo" element={<Main />} /> */}
               <Route path="/calendar" element={<TodoCalendar />} />
               <Route path="/statistics" element={<Statistics />} />
             </Routes>

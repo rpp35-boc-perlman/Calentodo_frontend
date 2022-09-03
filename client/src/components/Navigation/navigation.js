@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
+import UserBug from '../loginForm/UserBug.js'
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -36,12 +37,13 @@ export default function navigation() {
       children={
         <Box
         sx={{
-          width: 120
+          width: 200
         }}>
           <nav className="navbar">
+              <div className="bug"><UserBug /></div>
               <div className="nav-link"><NavLink className="navlink" to="/">Home</NavLink></div>
               <div className="nav-link"><NavLink className="navlink" to="/login">Login</NavLink></div>
-              <div className="nav-link"><NavLink className="navlink" to="/todo">Todos</NavLink></div>
+              {/* <div className="nav-link"><NavLink className="navlink" to="/todo">Todos</NavLink></div> */}
               <div className="nav-link"><NavLink className="navlink" to="/calendar">Calendar</NavLink></div>
               <div className="nav-link"><NavLink className="navlink" to="/statistics">Statistics</NavLink></div>
           </nav>
