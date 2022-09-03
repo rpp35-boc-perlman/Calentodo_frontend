@@ -49,8 +49,8 @@ const TodoCalendar = () => {
         resizable
         events={todos?.map((todo) => {
           return {
-            start: todo.start_date,
-            end: todo.end_date,
+            start: new Date(todo.start_date),
+            end: new Date(todo.end_date),
             title: todo.todo_body,
           };
         })}
