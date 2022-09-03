@@ -59,7 +59,11 @@ class Main extends React.Component {
 
   setSeen (todo_id, todo_body, start_date, end_date, category) {
     if([...arguments].length) {
-      this.setState({currentItem: [...arguments]})
+      this.setState({currentItem: [...arguments], addButton: false})
+    } else {
+      this.setState({
+        addButton: true
+      })
     }
     this.setState({seen: !this.state.seen});
   }
@@ -77,10 +81,10 @@ class Main extends React.Component {
             backgroundColor: '#172B80'}}
           >
             <Typography variant="white">To-Do List</Typography>
-            <Button color="gray" variant="contained" aria-label="add to-do" style={{width: '30%', marginBottom: '5px'}} onClick={() => console.log('Add clicked')}>
+            <Button color="gray" variant="contained" aria-label="add to-do" style={{width: '30%', marginBottom: '5px'}} onClick={() => this.setSeen()}>
               <AddCircleOutlineIcon className="add_icon"/>
             </Button>
-            {this.state.seen && <EditModal setSeen={()=>{this.setSeen()}} currentItem={this.state.currentItem}/>}
+            {this.state.seen && <EditModal setSeen={()=>{this.setSeen()}} currentItem={this.state.currentItem} addButton={this.state.addButton} refresh={this.refresh.bind(this)}/>}
             <LateDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'} setSeen={this.setSeen}></LateDisplay>
             <ActiveDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'} setSeen={this.setSeen}></ActiveDisplay>
             <PendingDisplay refresh={this.refresh.bind(this)} maxHeight={'40vh'} setSeen={this.setSeen}></PendingDisplay>
