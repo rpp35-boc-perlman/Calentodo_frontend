@@ -30,6 +30,7 @@ export default function UserBug (props) {
             <Box sx={{
                 display: 'flex',
                 alignItems: 'center',
+
             }}>
                <Avatar
                 sx={{

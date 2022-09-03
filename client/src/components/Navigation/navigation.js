@@ -11,6 +11,9 @@ import Box from '@mui/material/Box';
 
 
 export default function navigation() {
+
+
+
   const [state, setState] = React.useState({
     left: false
   });
@@ -43,7 +46,7 @@ export default function navigation() {
               <div className="bug"><UserBug /></div>
               <div className="nav-link"><NavLink className="navlink" to="/">Home</NavLink></div>
               <div className="nav-link"><NavLink className="navlink" to="/login">Login</NavLink></div>
-              <div className="nav-link"><NavLink className="navlink" to="/todo">Todos</NavLink></div>
+              {/* <div className="nav-link"><NavLink className="navlink" to="/todo">Todos</NavLink></div> */}
               <div className="nav-link"><NavLink className="navlink" to="/calendar">Calendar</NavLink></div>
               <div className="nav-link"><NavLink className="navlink" to="/statistics">Statistics</NavLink></div>
           </nav>
@@ -52,5 +55,6 @@ export default function navigation() {
       >
       </Drawer>
     </React.Fragment>
+
   </div>)
 }

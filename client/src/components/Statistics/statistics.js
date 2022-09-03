@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 
+
 class Statistics extends React.Component {
   constructor(props) {
     super(props);
@@ -26,12 +27,9 @@ class Statistics extends React.Component {
     //when the component mounts request the todos using the user id and place them in state
     axios({
       method: 'get',
-      url: 'http://52.8.24.123:3000/statistics',
-      //headers: {
-      //  target: 'http://52.8.24.123:3000/statistics'
-      //}
-      params: {
-        user_id: this.state.userId
+      url: '/api/',
+      headers: {
+       target: `http://52.8.24.123:3000/statistics?user_id=${this.state.userId}`
       }
     })
       .then((todos) => {
