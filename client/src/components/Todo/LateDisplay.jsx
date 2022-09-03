@@ -9,10 +9,18 @@ import TodoItem from './TodoItem.jsx';
 var LateDisplay = (props) => {
   const [todos, setTodos] = useState([]);
 
+  const config = {
+    url: '/api/',
+    method: 'get',
+    headers: {
+      target: 'http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=9'
+    }
+  }
+
   useEffect(() => {
-    let newTodos = [];
-    axios.get('http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=9')
-      .then(response => {
+    axios(config)
+    .then(response => {
+        let newTodos = [];
         let data = response.data;
         for (let todo of data) {
           if (todo.status === 'late' || new Date(todo.start_date) > Date.now()) {
