@@ -8,7 +8,7 @@
     "start": "node NODE_ENV=PROD server/www.js",
     "dev": "nodemon NODE_ENV=DEV server/www.js",
     "react-dev": "webpack --mode development --watch",
-    "deploy": "webpack --mode production && node server/server.js"
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
