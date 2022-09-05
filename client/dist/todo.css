@@ -3,7 +3,7 @@ html {
 }
 
 
-#vertical {
+.vertical {
   display: 'flex';
   align-items: center;
   justify-content: center;
