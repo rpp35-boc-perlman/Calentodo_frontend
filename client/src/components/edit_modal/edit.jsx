@@ -24,7 +24,7 @@ class EditModal extends React.Component {
 
   handleSubmit(event) {
     if (this.props.addButton) {
-      axios.post(`http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos/add?userId=9`, {
+      axios.post(`http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos/add?userId=${this.props.user_id}`, {
         todoObj: {
           Description: this.state.Description,
           Category: this.state.Category,

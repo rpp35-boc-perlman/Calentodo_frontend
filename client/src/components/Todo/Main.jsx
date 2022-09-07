@@ -8,7 +8,7 @@ import axios from 'axios';
 import LateDisplay from './LateDisplay.jsx';
 import ActiveDisplay from './ActiveDisplay.jsx';
 import PendingDisplay from './PendingDisplay.jsx';
-import EditModal from '../edit_modal/edit.jsx';
+import EditWrapper from '../edit_modal/editWrapper.jsx';
 import Navigation from '../Navigation/navigation.js';
 
 const theme = createTheme({
@@ -84,7 +84,7 @@ class Main extends React.Component {
             <Button color="gray" variant="contained" aria-label="add to-do" style={{width: '30%', marginBottom: '5px'}} onClick={() => this.setSeen()}>
               <AddCircleOutlineIcon className="add_icon"/>
             </Button>
-            {this.state.seen && <EditModal setSeen={()=>{this.setSeen()}} currentItem={this.state.currentItem} addButton={this.state.addButton} refresh={this.refresh.bind(this)}/>}
+            {this.state.seen && <EditWrapper setSeen={()=>{this.setSeen()}} currentItem={this.state.currentItem} addButton={this.state.addButton} refresh={this.refresh.bind(this)}/>}
             <LateDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'} setSeen={this.setSeen}></LateDisplay>
             <ActiveDisplay refresh={this.refresh.bind(this)} maxHeight={'20vh'} setSeen={this.setSeen}></ActiveDisplay>
             <PendingDisplay refresh={this.refresh.bind(this)} maxHeight={'40vh'} setSeen={this.setSeen}></PendingDisplay>
