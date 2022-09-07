@@ -120,10 +120,12 @@ class App extends React.Component {
               {/* <Route path="/todo" element={<Main />} /> */}
               <Route path="/calendar" element={<TodoCalendar />} />
 
-              <Route path="/statisticsWrapper" element={<StatisticsWrapper />}/>
+              <Route path="/statistics" element={<StatisticsWrapper />}/>
               <Route path="/sharedCalendars" element={<SharedCalendars
-              users={this.state.users} handleOnChange={this.handleOnChange}
-              checkedState={this.state.checkedState}/>}/>
+                users={this.state.users}
+                handleOnChange={this.handleOnChange}
+                checkedState={this.state.checkedState}/>}
+              />
             </Routes>
           </HashRouter>
         </CurrentUserContext.Provider>

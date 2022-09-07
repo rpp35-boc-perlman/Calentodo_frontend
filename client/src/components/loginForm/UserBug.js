@@ -68,8 +68,8 @@ export default function UserBug (props) {
                         Hello, {user.user_email}
                     </ Typography>
                     {/* button hides and shows with animations */}
-                    <Button 
-                        onClick={() => { 
+                    <Button
+                        onClick={() => {
                             handleSignOut()
                         }}
                         sx={{
@@ -91,15 +91,27 @@ export default function UserBug (props) {
     } else {
         // if there is no user, show a login button
         return(
-            <Button variant="contained"
-                size="large"
-                sx={{
-                    backgroundColor: '#F99F03',
-                    padding: '.5em 1em',
-                }}
-            >
-                <Link style={{textDecoration: 'none', color: '#fff'}} to="/login">Login</Link>
-            </Button>
+            <div style={{
+                width: '100%',
+                display: 'grid',
+                placeItems: 'center',
+                padding: "1em 0"
+            }}>
+                <Button
+                    onClick={() => navigate('/login')}
+                    variant="contained"
+                    size="large"
+                    sx={{
+                        backgroundColor: '#F99F03',
+                        '&hover': {
+                            backgroundColor: '#F99F03',
+                            padding: '.5em 2em',
+                        }
+                    }}
+                >
+                    <Link style={{textDecoration: 'none', color: '#fff'}} to="/login">Login</Link>
+                </Button>
+            </div>
         )
     }
 

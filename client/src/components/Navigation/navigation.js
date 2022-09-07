@@ -9,10 +9,15 @@ import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
+import {Fab, Typography} from '@mui/material';
+// for some reason the icons need to be imported individually
+import NavigationIcon from '@mui/icons-material/Navigation';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import OfflineShareIcon from '@mui/icons-material/OfflineShare';
 
 export default function navigation() {
-
-
 
   const [state, setState] = React.useState({
     left: false
@@ -27,35 +32,117 @@ export default function navigation() {
   }
 
   return (
-  <div>
     <React.Fragment key="left">
-      <Button onClick={toggleDrawer(true)} variant="contained" size="small">
+      {/* old button */}
+      {/* <Button onClick={toggleDrawer(true)} variant="contained" size="small">
         <MenuIcon />
-      </Button>
+      </Button> */}
+      {/* floating action button */}
+      <Fab
+        onClick={toggleDrawer(true)}
+        aria-label="Menu Button"
+        variant="extended"
+        sx={{
+          // get rid the bar that runs across the top of the screen
+          position: 'absolute',
+          // get button out fo the corner a little
+          margin: '3em 1em',
+        }}
+      >
+        Menu
+        <NavigationIcon />
+      </Fab>
       <Drawer
-      anchor="left"
-      open={state.left}
-      onClose={toggleDrawer(false)}
-      PaperProps={{ sx:{ bgcolor: 'darkblue', color: 'white' } }}
-      children={
+        anchor="left"
+        open={state.left}
+        onClose={toggleDrawer(false)}
+        PaperProps={{ sx:{ bgcolor: 'darkGrey', color: 'black' } }}
+        children={
         <Box
         sx={{
           width: 200
         }}>
           <nav className="navbar">
-              <div className="bug"><UserBug /></div>
-              <div className="nav-link"><NavLink className="navlink" to="/">Home</NavLink></div>
+              <UserBug />
+              {/* side note: navlink should be its own component for how much it is repeated, but I was lazy */}
+              {/* todo link */}
+              <NavLink className="nav-link" to="/"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  gap: "1em",
+                  width: '100%',
+                  color: '1e1e1e',
+                  textDecoration: 'none',
+                }}
+              >
+                <Typography variant="h6" sx={{color: 'black'}}>
+                    Todo Lists
+                </Typography>
+                <ListAltIcon fontSize="large" sx={{color: 'black'}} />
+              </NavLink>
+              {/* Calendar */}
+              <NavLink className="nav-link" to="/calendar"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  gap: "1em",
+                  width: '100%',
+                  color: '1e1e1e',
+                  textDecoration: 'none',
+                }}
+              >
+                <Typography variant="h6"  sx={{color: 'black'}}>
+                    Calendar
+                </Typography>
+                <CalendarMonthIcon fontSize="large"   sx={{color: 'black'}}/>
+              </NavLink>
+              {/* Stats */}
+              <NavLink className="nav-link" to="/statistics"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  gap: "1em",
+                  width: '100%',
+                  color: '1e1e1e',
+                  textDecoration: 'none',
+                }}
+              >
+                <Typography variant="h6"  sx={{color: 'black'}}>
+                    Statistics
+                </Typography>
+                <EqualizerIcon fontSize="large"   sx={{color: 'black'}}/>
+              </NavLink>
+              {/* shared calendars */}
+              <NavLink className="nav-link" to="/sharedCalendars"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  gap: "1em",
+                  width: '100%',
+                  color: '1e1e1e',
+                  textDecoration: 'none',
+                }}
+              >
+                <Typography variant="h6"  sx={{color: 'black'}}>
+                    Shared Calendars
+                </Typography>
+                <OfflineShareIcon fontSize="large"  sx={{color: 'black'}} />
+              </NavLink>
+
+              {/* old links for reference */}
               {/* <div className="nav-link"><NavLink className="navlink" to="/todo">Todos</NavLink></div> */}
-              <div className="nav-link"><NavLink className="navlink" to="/calendar">Calendar</NavLink></div>
-              <div className="nav-link"><NavLink className="navlink" to="/sharedCalendars">Shared Calendars</NavLink></div>
-              <div className="nav-link"><NavLink className="navlink" to="/statistics">Statistics</NavLink></div>
-              <div className="nav-link"><NavLink className="navlink" to="/sharedCalendars">Shared Calendars</NavLink></div>
+              {/* <div className="nav-link"><NavLink className="navlink" to="/calendar">Calendar</NavLink></div> */}
+              {/* <div className="nav-link"><NavLink className="navlink" to="/sharedCalendars">Shared Calendars</NavLink></div> */}
+              {/* <div className="nav-link"><NavLink className="navlink" to="/statistics">Statistics</NavLink></div> */}
           </nav>
         </Box>
       }
-      >
-      </Drawer>
+      />
     </React.Fragment>
-
-  </div>)
+  )
 }
