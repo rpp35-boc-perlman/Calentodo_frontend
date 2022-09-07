@@ -1,12 +1,14 @@
 import React, {useContext} from 'react';
 import {CurrentUserContext} from '../../index';
 import {Box, Button, Avatar, Typography} from '@mui/material';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 export default function UserBug (props) {
 
     const {user, setUser} = useContext(CurrentUserContext);
+
+    const navigate = useNavigate();
 
     function handleSignOut () {
         const config = {
@@ -16,6 +18,7 @@ export default function UserBug (props) {
         axios(config)
         .then(r => {
             setUser(null)
+            navigate('/')
         })
         .catch(err => {
             console.log(err)

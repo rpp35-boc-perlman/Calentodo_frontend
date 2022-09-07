@@ -1,6 +1,8 @@
 
 import React, {useState} from 'react';
-import {Box, Container, Button, TextField, Typography} from '@mui/material';
+import {Box, Container, Button, TextField, Typography, useMediaQuery} from '@mui/material';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import calendar from '../../svg/calendar.jpg';
 
 
 export default function LoginForm (props) {
@@ -52,18 +54,59 @@ export default function LoginForm (props) {
         }
     }
 
+    const tablet = useMediaQuery('(max-width: 650px)');
+    const laptop = useMediaQuery('(max-width: 1000px)');
+    const desktop = useMediaQuery('(min-width: 1250px)');
+
     if(props.mode === 'login') {
         return (
-            <Container sx={{
-                display: 'grid',
-                placeItems: 'center',
+            <Box sx={{
+                display: tablet ? 'grid' : 'flex',
+                flexDirection: tablet ? 'column' : 'row',
+                alignItems: 'center',
+                margin: '0 auto',
+                // gap: tablet ? '5em' : 'none',
                 height: '100vh',
-                maxWidth: '80%'
+                width: desktop ? "40em" : 'auto',
+                maxWidth: '98%',
+                // paddingTop: tablet ? '25%' : 'none',
             }}>
+                {/* top title */}
                 <Box sx={{
-                        width: '80%',
-                        height: '30%',
-                        borderRadius: '.5em',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '1rem',
+                    width: desktop ? "80%" : '80%',
+                    height: tablet ? 'auto' : '19em',
+                    background: tablet ? '#fff' : `url(${calendar})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    borderRadius: tablet ? '10px' : '10px 0 0 10px',
+                    padding: '1em',
+                    color:'black'
+                }}>
+                    <Typography 
+                        variant='h5'
+                        sx={{
+                            textAlign: 'center',
+                            marginTop: tablet ? 'none' : '10em',
+                        }}
+                    >
+                        Calentodo
+                    </Typography>
+                    <EventAvailableIcon sx={{
+                        fontSize: '2em',
+                        marginTop: tablet ? 'none' : '7.5em',
+                    }}/>                 
+                </Box>
+                {/* login form container */}
+                <Box sx={{
+                        width: desktop ? '100%' : '80%',
+                        height: '18em',
+                        borderRadius: tablet ? '.5em' : '0 10px 10px 0',
                         justifyContent: 'center',
                         background: '#fff',
                         display: 'flex',
@@ -72,7 +115,10 @@ export default function LoginForm (props) {
                         padding: '1.5em'
                         }}
                 >
-                    <Typography variant='h3' style={{ color: '#fff', position: 'absolute', top: '25%'}}>
+                    <Typography variant='h4' style={{
+                        color: 'black',
+                        }}
+                    >
                         Login
                     </ Typography>
                     {message ? <span>{message}</span> : null}
@@ -108,20 +154,57 @@ export default function LoginForm (props) {
                         Don't have an account yet?
                     </Button>
                 </Box>
-            </Container>
+            </Box>
         )
     } else {
         return (
-            <Container sx={{
-                display: 'grid',
-                placeItems: 'center',
+            <Box sx={{
+                display: tablet ? 'grid' : 'flex',
+                flexDirection: tablet ? 'column' : 'row',
+                alignItems: 'center',
+                margin: '0 auto',
+                // gap: tablet ? '5em' : 'none',
                 height: '100vh',
-                maxWidth: '80%'
+                width: desktop ? "40em" : 'auto',
+                maxWidth: '98%',
+                // paddingTop: tablet ? '25%' : 'none',
             }}>
+                {/* top title */}
                 <Box sx={{
-                        width: '80%',
-                        height: '40%',
-                        borderRadius: '.5em',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '1rem',
+                    width: '80%',
+                    height: tablet ? 'auto' : '26em',
+                    background: tablet ? '#fff' : `url(${calendar})`,
+                    backgroundSize: laptop ? "fill" : 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    borderRadius: tablet ? '10px' : '10px 0 0 10px',
+                    padding: '1em',
+                    color:'black'
+                }}>
+                    <Typography 
+                        variant='h5'
+                        sx={{
+                            textAlign: 'center',
+                            marginTop: tablet ? 'none' : '10em',
+                        }}
+                    >
+                        Calentodo
+                    </Typography>
+                    <EventAvailableIcon sx={{
+                        fontSize: '2em',
+                        marginTop: tablet ? 'none' : '7.5em',
+                    }}/>                 
+                </Box>
+                {/* sign up form */}
+                <Box sx={{
+                        width: desktop ? '100%' : '80%',
+                        height: '25em',
+                        borderRadius: tablet ? '.5em' : '0 10px 10px 0',
                         justifyContent: 'center',
                         background: '#fff',
                         display: 'flex',
@@ -130,10 +213,8 @@ export default function LoginForm (props) {
                         padding: '1.5em'
                         }}
                 >
-                    <Typography variant='h2' style={{
-                            color: '#fff',
-                            position: 'absolute',
-                            top: '20%'
+                    <Typography variant='h4' style={{
+                            color: 'black',
                        }}
                     >
                         Sign Up
@@ -178,7 +259,7 @@ export default function LoginForm (props) {
                         Already have an Account?
                     </Button>
                 </Box>
-            </Container>
+            </Box>
         )
     }
 }
