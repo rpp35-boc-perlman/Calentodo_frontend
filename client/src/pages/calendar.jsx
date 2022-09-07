@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import Navigation from '../components/Navigation/navigation.js';
 import moment from 'moment';
+import CurrentUserContext from '../index.js';
 // import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios';
 
@@ -29,13 +30,12 @@ const TodoCalendar = () => {
       axios(config)
         .then((results) => {
           setTodos(results.data);
-          console.log(results);
         })
         .catch((reason) => {
           console.error(reason);
         });
     },
-    [todos]
+    [todos.length]
   );
 
   return (
