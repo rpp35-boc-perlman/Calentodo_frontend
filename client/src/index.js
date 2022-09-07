@@ -28,6 +28,22 @@ class App extends React.Component {
     this.setUser = this.setUser.bind(this);
   }
 
+  // if there is a cookie, get the user data from the server
+  componentDidMount() {
+    // this will be -1 if there is no cookie
+    const cookie = document.cookie.indexOf('CalentodoSession');
+    if (cookie){
+      axios
+        .get('/api/users/me')
+        .then((res) => {
+          this.setUser(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
   // update state to container the new user data
   // expects and object
   setUser(data) {
