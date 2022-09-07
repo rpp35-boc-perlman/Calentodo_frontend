@@ -31,7 +31,6 @@ var ActiveDisplay = (props) => {
             }
           }
   
-          console.log(newTodos);
           if (JSON.stringify(newTodos) !== JSON.stringify(todos)) {
             setTodos(newTodos);
           }
