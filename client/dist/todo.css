@@ -3,12 +3,12 @@ html {
 }
 
 
-#vertical {
+.vertical {
   display: 'flex';
   align-items: center;
   justify-content: center;
   writing-mode: vertical-lr;
-  margin-left: 35%;
+  padding-left: 40%;
 }
 
 .add_icon {
