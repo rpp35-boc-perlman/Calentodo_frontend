@@ -26,7 +26,7 @@ var ActiveDisplay = (props) => {
           let newTodos = [];
           let data = response.data;
           for (let todo of data) {
-            if (todo.status === 'active' && new Date(todo.start_date) <= Date.now()) {
+            if (todo.status === 'active') {
               newTodos.push(todo);
             }
           }
