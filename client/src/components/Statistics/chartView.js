@@ -75,14 +75,34 @@ class ChartView extends React.Component {
 
   render() {
     return (
-      <Grid item xs={12} md={10} sx={{ backgroundColor: '#113255', padding: 3  }}>
-        <Bar id="statisticsChart" data={
+      <Grid item xs={12} md={10} sx={{ backgroundColor: '#113255', padding: 2,  color: '#ffffff', margin: 0.5 }}>
+        <Bar  id="statisticsChart" data={
           {
             labels: this.state.labels,
             datasets: [this.state.data]
           }
         }
-        options={{plugins:{legend:{ display: this.state.display, bodyColor: '#fff'}}}}
+        options={{
+          plugins: {
+            legend: {
+              labels: {
+                color: 'white'
+              }
+            }
+          },
+          scales: {
+            y: {
+              ticks: {
+                color: 'white'
+              }
+            },
+            x:{
+              ticks: {
+                color: 'white'
+              }
+            }
+          }
+        }}
         ></Bar>
       </Grid>
     )
