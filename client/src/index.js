@@ -7,10 +7,9 @@ import TodoCalendar from './pages/calendar.jsx';
 
 import StatisticsWrapper from './components/Statistics/statisticsWrapper.js';
 import SharedCalendars from './components/SharedCalendars/sharedCalendars.js'
-import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
+import {HashRouter, Routes, Route } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage';
-import Home from './pages/Home';
 
 import Main from './components/Todo/Main.jsx';
 
@@ -32,7 +31,8 @@ class App extends React.Component {
   componentDidMount() {
     // this will be -1 if there is no cookie
     const cookie = document.cookie.indexOf('CalentodoSession');
-    if (cookie){
+    console.log(cookie)
+    if (cookie) {
       axios
         .get('/api/users/me')
         .then((res) => {

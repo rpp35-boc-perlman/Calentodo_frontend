@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useContext } from 'react';
 import axios from 'axios';
+import backgroundSVG from '../svg/liquid-cheese.svg';
 
 import { Container, Box, Button, TextField, Backdrop, CircularProgress } from '@mui/material';
 import {CurrentUserContext} from '../index';
@@ -74,11 +75,21 @@ export default function LoginPage (props) {
     }
 
     return (
-        <Container sx={{
-            height: '100vh'
+        <Box sx={{
+            display: 'grid',
+            // flexDirection: 'column',
+            placeItems: 'center',
+            height: '100vh',
+            width: '100vw',
+            background: `url(${backgroundSVG})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
         }}>
             <Backdrop
                 open={loading}
+                sx={{
+                    zIndex: '2000',
+                }}
             >
                 <CircularProgress color="inherit" />
             </Backdrop>
@@ -88,7 +99,7 @@ export default function LoginPage (props) {
                 handleSignIn={handleSignIn}
                 handleSignUp={handleCreateUser}
             />
-        </ Container >
+        </ Box>
     )
 
 }
