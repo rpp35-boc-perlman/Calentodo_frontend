@@ -47,61 +47,23 @@ class SharedCalendars extends React.Component {
         //   "user_email": "me@test.com"
         // }
       ],
-      visibleUsers: [],
-      checkedState: []
+
+
     }
-    this.handleOnChange = this.handleOnChange.bind(this);
+
 
   }
 
-  componentDidMount() {
-    const config = {
-      url: '/api/',
-      method: 'get',
-      headers: {
-        target: 'http://ec2-34-205-69-211.compute-1.amazonaws.com/users/9'
-      }
-    }
-    axios(config)
-    .then(res => {
-      for (var user of res.data.users) {
-        user.isVisible = false;
-      }
-      this.setState({
-        users: res.data.users
-      },() => console.log(this.state.users, 'users'))
-    })
-    .catch((err) => {
-      console.error(err)
-    }
-    )
-    this.setState({
-      checkedState: new Array(this.state.users.length).fill(false)
-    })
-  }
 
-  handleOnChange(position) {
-    console.log('clicked')
-    const updatedCheckedState = this.state.checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-    const users = [...this.state.users]
-    var user = users[position]
-    user.isVisible = !user.isVisible
-    this.setState({
-      checkedState: updatedCheckedState,
-      users: users
-    },() => console.log(this.state.users))
-  }
 
 
 
   render() {
     return(
       <>
-        <CalendarList users={this.state.users}
-        handleOnChange={this.handleOnChange}
-        checkedState={this.state.checkedState}
+        <CalendarList users={this.props.users}
+        handleOnChange={this.props.handleOnChange}
+        checkedState={this.props.checkedState}
         />
       </>
     )
