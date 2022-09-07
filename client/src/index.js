@@ -23,8 +23,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       user: null,
+      //users: [
+      checkedState: [],
+      users: []
+
     };
-    this.setUser = this.setUser.bind(this);
+
+    this.setUser = this.setUser.bind(this)
+    this.handleOnChange = this.handleOnChange.bind(this);
+
   }
 
   // if there is a cookie, get the user data from the server
@@ -46,9 +53,53 @@ class App extends React.Component {
 
   // update state to container the new user data
   // expects and object
-  setUser(data) {
-    this.setState({ user: data });
+
+  setUser (data) {
+    this.setState({user: data})
+
   }
+
+  componentDidMount() {
+    const config = {
+      url: '/api/',
+      method: 'get',
+      headers: {
+        target: 'http://ec2-34-205-69-211.compute-1.amazonaws.com/users/9'
+      }
+    }
+    axios(config)
+    .then(res => {
+      for (var user of res.data.users) {
+        user.isVisible = false;
+      }
+      this.setState({
+        users: res.data.users
+      },() => console.log(this.state.users, 'users'))
+    })
+    .catch((err) => {
+      console.error(err)
+    }
+    )
+    this.setState({
+      checkedState: new Array(this.state.users.length).fill(false)
+    })
+  }
+
+  handleOnChange(position) {
+    console.log('clicked')
+    const updatedCheckedState = this.state.checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+    const users = [...this.state.users]
+    var user = users[position]
+    user.isVisible = !user.isVisible
+    this.setState({
+      checkedState: updatedCheckedState,
+      users: users
+    },() => console.log(this.state.users))
+  }
+
+
 
   render() {
     return (
@@ -62,8 +113,11 @@ class App extends React.Component {
               <Route path="/login" element={<LoginPage />} />
               {/* <Route path="/todo" element={<Main />} /> */}
               <Route path="/calendar" element={<TodoCalendar />} />
-              <Route path="/statistics" element={<StatisticsWrapper />} />
-              <Route path="/sharedCalendars" element={<SharedCalendars />} />
+
+              <Route path="/statisticsWrapper" element={<StatisticsWrapper />}/>
+              <Route path="/sharedCalendars" element={<SharedCalendars
+              users={this.state.users} handleOnChange={this.handleOnChange}
+              checkedState={this.state.checkedState}/>}/>
             </Routes>
           </HashRouter>
         </CurrentUserContext.Provider>
