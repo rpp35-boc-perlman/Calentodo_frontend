@@ -1,5 +1,6 @@
 import React from 'react';
 import CalendarList from './calendarList';
+import Navigation from '../Navigation/navigation.js';
 import axios from 'axios';
 
 class SharedCalendars extends React.Component {
@@ -92,6 +93,7 @@ class SharedCalendars extends React.Component {
   render() {
     return(
       <>
+        <Navigation />
         <CalendarList users={this.state.users}
         handleOnChange={this.handleOnChange}
         checkedState={this.state.checkedState}

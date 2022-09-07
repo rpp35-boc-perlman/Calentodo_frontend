@@ -43,6 +43,8 @@ class ChartView extends React.Component {
           } else {
             data.backgroundColor.push('rgb(66, 135, 245)')
           }
+          //if the category already exists in a dataset push the current data to that dataset
+          //if the category does not exist create a new object in the data array
           if (this.props.activeTodos[i].category) {
             data.label = this.props.activeTodos[i].category;
           }

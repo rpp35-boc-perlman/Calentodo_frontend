@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import TodoCalendar from './pages/calendar.jsx';
 
-import Statistics from './components/Statistics/statistics.js';
+import StatisticsWrapper from './components/Statistics/statisticsWrapper.js';
 import SharedCalendars from './components/SharedCalendars/sharedCalendars.js'
 import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
 
