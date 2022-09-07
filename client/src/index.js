@@ -7,7 +7,7 @@ import TodoCalendar from './pages/calendar.jsx';
 
 import StatisticsWrapper from './components/Statistics/statisticsWrapper.js';
 import SharedCalendars from './components/SharedCalendars/sharedCalendars.js'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage';
 import Home from './pages/Home';
@@ -40,16 +40,16 @@ class App extends React.Component {
         <CurrentUserContext.Provider
           value={{ user: this.state.user, setUser: this.setUser }}
         >
-          <BrowserRouter>
+          <HashRouter>
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/login" element={<LoginPage />} />
               {/* <Route path="/todo" element={<Main />} /> */}
               <Route path="/calendar" element={<TodoCalendar />} />
-              <Route path="/statistics" element={<StatisticsWrapper />} />
+              <Route path="/statistics" element={<Statistics />} />
               <Route path="/sharedCalendars" element={<SharedCalendars />} />
             </Routes>
-          </BrowserRouter>
+          </HashRouter>
         </CurrentUserContext.Provider>
       </div>
     );

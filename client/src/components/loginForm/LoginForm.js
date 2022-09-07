@@ -77,12 +77,14 @@ export default function LoginForm (props) {
                     </ Typography>
                     {message ? <span>{message}</span> : null}
                     <TextField
+                        id='email'
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
                         variant="filled"
                         label="Email"
                     />
                     <TextField
+                        id='password'
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
                         variant="filled"
@@ -90,6 +92,7 @@ export default function LoginForm (props) {
                         type="password"
                     />
                     <Button
+                        id='login-btn'
                         variant="contained"
                         onClick={() => handleSignIn()}
                     >
