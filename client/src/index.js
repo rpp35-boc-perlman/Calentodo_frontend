@@ -35,21 +35,21 @@ class App extends React.Component {
   }
 
   // if there is a cookie, get the user data from the server
-  componentDidMount() {
-    // this will be -1 if there is no cookie
-    const cookie = document.cookie.indexOf('CalentodoSession');
-    console.log(cookie)
-    if (cookie) {
-      axios
-        .get('/api/users/me')
-        .then((res) => {
-          this.setUser(res.data.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }
+  // componentDidMount() {
+  //   this will be -1 if there is no cookie
+  //   const cookie = document.cookie.indexOf('CalentodoSession');
+  //   console.log(cookie)
+  //   if (cookie) {
+  //     axios
+  //       .get('/api/users/me')
+  //       .then((res) => {
+  //         this.setUser(res.data.data);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }
 
   // update state to container the new user data
   // expects and object
@@ -60,29 +60,37 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const config = {
-      url: '/api/',
-      method: 'get',
-      headers: {
-        target: 'http://ec2-34-205-69-211.compute-1.amazonaws.com/users/9'
-      }
-    }
-    axios(config)
-    .then(res => {
-      for (var user of res.data.users) {
-        user.isVisible = false;
-      }
-      this.setState({
-        users: res.data.users
-      },() => console.log(this.state.users, 'users'))
-    })
-    .catch((err) => {
-      console.error(err)
-    }
-    )
-    this.setState({
-      checkedState: new Array(this.state.users.length).fill(false)
-    })
+    axios
+    .get('/api/users/me')
+    .then((res) => {
+        const config = {
+          url: '/api/',
+          method: 'get',
+          headers: {
+            target: `http://ec2-34-205-69-211.compute-1.amazonaws.com/users/${res.data.data.user_id}`
+          }
+        }
+        this.setUser(res.data.data);
+        axios(config)
+        .then(res => {
+          for (var user of res.data.users) {
+            user.isVisible = false;
+          }
+          this.setState({
+            users: res.data.users
+          },() => console.log(this.state.users, 'users'))
+        })
+        .catch((err) => {
+          console.error(err)
+        }
+        )
+        this.setState({
+          checkedState: new Array(this.state.users.length).fill(false)
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   handleOnChange(position) {
@@ -98,8 +106,6 @@ class App extends React.Component {
       users: users
     },() => console.log(this.state.users))
   }
-
-
 
   render() {
     return (
