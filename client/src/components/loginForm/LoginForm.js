@@ -121,7 +121,7 @@ export default function LoginForm (props) {
                     >
                         Login
                     </ Typography>
-                    {message ? <span>{message}</span> : null}
+                    {message ? <Typography variant='button' sx={{color: 'black'}}>{message}</Typography> : null}
                     <TextField
                         id='email'
                         onChange={(e) => setEmail(e.target.value)}
