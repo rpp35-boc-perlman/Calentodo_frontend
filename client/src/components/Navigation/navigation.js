@@ -23,6 +23,8 @@ export default function navigation() {
     left: false
   });
 
+  const [expand, setExpand] = React.useState(false)
+
   const toggleDrawer = (open) => (e) => {
     if (e.type === 'keydown' && (e.key === 'Tab' || e.key === 'Shift')) {
       return;
@@ -40,17 +42,31 @@ export default function navigation() {
       {/* floating action button */}
       <Fab
         onClick={toggleDrawer(true)}
+        onMouseEnter={() => setExpand(true)}
+        onMouseLeave={() => setExpand(false)}
         aria-label="Menu Button"
         variant="extended"
         sx={{
-          // get rid the bar that runs across the top of the screen
+          display: 'flex',
+          justifyContent: 'flex-end',
           position: 'absolute',
+          left: !expand ? '-22em' : '-8em',
           // get button out fo the corner a little
+          textAlign: 'right',
+          width: '300px',
           margin: '3em 1em',
+          transition: '.4s ease-in-out',
         }}
       >
-        Menu
-        <NavigationIcon />
+        <Typography variant='h5'>
+          Menu
+        </Typography>
+        <NavigationIcon
+          fontSize='large'
+          sx={{
+            transform: 'rotate(90deg)',
+          }}
+        />
       </Fab>
       <Drawer
         anchor="left"
