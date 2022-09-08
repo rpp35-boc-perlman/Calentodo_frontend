@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import Navigation from '../components/Navigation/navigation.js';
 import moment from 'moment';
-import CurrentUserContext from '../index.js';
+import { CurrentUserContext } from '../index.js';
 // import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios';
 
@@ -17,12 +17,15 @@ const TodoCalendar = () => {
       todo_body: 'test event 2',
     },
   ]);
+  const { user } = useContext(CurrentUserContext);
+  console.log(user);
   const config = {
     url: '/api/',
     method: 'get',
     headers: {
       target:
-        'http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=9',
+        'http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=' +
+        user.user_id,
     },
   };
   useEffect(

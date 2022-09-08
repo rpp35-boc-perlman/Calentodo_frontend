@@ -13,31 +13,38 @@ class Statistics extends React.Component {
     super(props);
     this.state = {
       //a user id to retrieve the proper todos
-      userId: 9,
       //all todos retrieved each time the tab is opened
       todos: [],
       //an array for active(displayed and rendered) todos
       activeTodos: []
     }
     this.checkHandler = this.checkHandler.bind(this);
+    this.getStats = this.getStats.bind(this);
   }
 
-
-  componentDidMount() {
-    //when the component mounts request the todos using the user id and place them in state
+  getStats() {
     axios({
       method: 'get',
       url: '/api/',
       headers: {
-       target: `http://52.8.24.123:3000/statistics?user_id=${this.state.userId}`
+       target: `http://52.8.24.123:3000/statistics?user_id=${this.props.user_id}`
       }
     })
       .then((todos) => {
         this.setState({
-          todos: todos.data
+          todos: todos.data,
         })
       })
   }
+
+  componentDidMount() {
+    //when the component mounts request the todos using the user id and place them in state
+    this.getStats();
+  }
+
+  // componentDidUpdate() {
+  //   this.getStats();
+  // }
 
   checkHandler(e) {
     //event listener

@@ -1,37 +1,41 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ReactDOM from 'react-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AppBar, Box, Grid, Toolbar, Typography, Paper } from '@mui/material';
 import axios from 'axios';
 
 import TodoItem from './TodoItem.jsx';
+import {CurrentUserContext} from '../../index';
 
 var PendingDisplay = (props) => {
   const [todos, setTodos] = useState([]);
+  const {user, setUser} = useContext(CurrentUserContext);
   
   const config = {
     url: '/api/',
     method: 'get',
     headers: {
-      target: 'http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=9'
+      target: `http://ec2-3-91-186-233.compute-1.amazonaws.com:3030/todos?userId=${user ? user.user_id : ''}`
     }
   }
 
   useEffect(() => {
-    axios(config)
-    .then(response => {
-        let newTodos = [];
-        let data = response.data;
-        for (let todo of data) {
-          if (todo.status === 'pending' && new Date(todo.start_date) <= Date.now()) {
-            newTodos.push(todo);
+    if (user) {
+      axios(config)
+      .then(response => {
+          let newTodos = [];
+          let data = response.data;
+          for (let todo of data) {
+            if (todo.status === 'pending' && new Date(todo.start_date) <= Date.now()) {
+              newTodos.push(todo);
+            }
           }
-        }
-
-        if (JSON.stringify(newTodos) !== JSON.stringify(todos)) {
-          setTodos(newTodos);
-        }
-      });
+  
+          if (JSON.stringify(newTodos) !== JSON.stringify(todos)) {
+            setTodos(newTodos);
+          }
+        });
+    }
   });
 
   return (
@@ -70,7 +74,7 @@ var PendingDisplay = (props) => {
           height: props.maxHeight,
           maxHeight: props.maxHeight,
         }}>
-          <Typography id="vertical" variant="xsmallWhite" sx={{display: 'flex'}}>Add To Calendar </Typography>
+          <Typography className="vertical" id='markAsComplete'  variant="xsmallWhite" sx={{display: 'flex'}}>Add To Calendar </Typography>
         </Box>
       </Box>
     </>
