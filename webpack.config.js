@@ -47,6 +47,14 @@ module.exports = {
         ],
         include: /\.css$/,
       },
+      {
+        test: /\.(svg|png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
+      },
     ],
   },
   plugins: [
