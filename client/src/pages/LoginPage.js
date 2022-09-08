@@ -4,10 +4,7 @@ import axios from 'axios';
 import backgroundSVG from '../svg/liquid-cheese.svg';
 
 import {
-  Container,
   Box,
-  Button,
-  TextField,
   Backdrop,
   CircularProgress,
 } from '@mui/material';
@@ -16,9 +13,6 @@ import { useNavigate } from 'react-router-dom';
 import LoginForm from '../components/loginForm/LoginForm';
 
 export default function LoginPage(props) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
   const [mode, setMode] = useState('login');
   const [message, setMessage] = useState(null);
   const [loading, isLoading] = useState(false);
