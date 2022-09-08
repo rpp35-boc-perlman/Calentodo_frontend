@@ -81,7 +81,7 @@ class App extends React.Component {
           },() => console.log(this.state.users, 'users'))
         })
         .catch((err) => {
-          console.error(err)
+          // console.error(err)
         }
         )
         this.setState({
@@ -89,7 +89,7 @@ class App extends React.Component {
         })
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
 

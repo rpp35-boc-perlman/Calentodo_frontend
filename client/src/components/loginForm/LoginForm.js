@@ -13,7 +13,6 @@ export default function LoginForm (props) {
     const [password, setPassword] = useState('')
     // state for confirming password - should match password field
     const [password2, setPassword2] = useState('')
-    const [message, setMessage] = useState(props.message || null)
 
     // the user should not be able to submti a blank creation form
     function verifySignUpForm () {
@@ -21,7 +20,7 @@ export default function LoginForm (props) {
             if(password === password2){
                 return true
             } else {
-                setMessage('Passwords do not match')
+                props.setMessage('Passwords do not match')
                 return false
             }
         } else {
@@ -32,10 +31,10 @@ export default function LoginForm (props) {
     // verify that email password fields are not blank
     function verifyEmailAndPassword () {
         if(email === ''){
-            setMessage('Email is required')
+            props.setMessage('Email is required')
             return false
         } else if(password === ''){
-            setMessage('Password is required')
+            props.setMessage('Password is required')
             return false
         } else {
             return true
@@ -79,20 +78,21 @@ export default function LoginForm (props) {
                     justifyContent: 'center',
                     gap: '1rem',
                     width: desktop ? "80%" : '80%',
-                    height: tablet ? 'auto' : '19em',
+                    height: tablet ? 'auto' : '20em',
                     background: tablet ? '#fff' : `url(${calendar})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     borderRadius: tablet ? '10px' : '10px 0 0 10px',
                     padding: '1em',
-                    color:'black'
+                    color:'black',
+                    margin: '0 auto',
                 }}>
                     <Typography 
-                        variant='h5'
+                        variant='h6'
                         sx={{
                             textAlign: 'center',
-                            marginTop: tablet ? 'none' : '10em',
+                            marginTop: tablet ? 'none' : '12em',
                         }}
                     >
                         Calentodo
@@ -111,8 +111,8 @@ export default function LoginForm (props) {
                         background: '#fff',
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '1em',
-                        padding: '1.5em'
+                        gap: '.5em',
+                        padding: tablet ? '2em': '2em',
                         }}
                 >
                     <Typography variant='h4' style={{
@@ -121,7 +121,8 @@ export default function LoginForm (props) {
                     >
                         Login
                     </ Typography>
-                    {message ? <Typography variant='button' sx={{color: 'black'}}>{message}</Typography> : null}
+                    {/* message */}
+                    {props.message ? <Typography variant='overline' sx={{color: 'black', paddingTop: 'none'}}>{props.message}</Typography> : null}
                     <TextField
                         id='email'
                         onChange={(e) => setEmail(e.target.value)}
@@ -151,7 +152,7 @@ export default function LoginForm (props) {
                             setMessage(null)
                         }}
                     >
-                        Don't have an account yet?
+                        <Typography variant='overline'>Don't have an account yet?</Typography>
                     </Button>
                 </Box>
             </Box>
@@ -219,7 +220,8 @@ export default function LoginForm (props) {
                     >
                         Sign Up
                     </Typography>
-                    {message ? <span>{message}</span> : null}
+                    {/* message */}
+                    {props.message ? <Typography variant='overline' sx={{color: 'black', paddingTop: 'none'}}>{props.message}</Typography> : null}
                     <TextField
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
@@ -256,7 +258,7 @@ export default function LoginForm (props) {
                             setMessage(null)
                         }}
                     >
-                        Already have an Account?
+                        <Typography variant='overline'>Already have an account?</Typography>
                     </Button>
                 </Box>
             </Box>

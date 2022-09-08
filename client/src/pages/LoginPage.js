@@ -39,7 +39,7 @@ export default function LoginPage (props) {
             // pull the user_id, email, and color out of the respsonse
             const {user_id, user_email, color} = r.data.data
             setUser({user_id, user_email, color})
-            // store the current users info in local storageß
+            // store the current users info in local storage
             localStorage.setItem('user', JSON.stringify({user_id, user_email, color}))
             isLoading(false)
             // redirect user back to the app after they login
@@ -47,8 +47,7 @@ export default function LoginPage (props) {
         })
         .catch(err => {
             isLoading(false)
-            console.log(err)
-            setMessage(err.message);
+            setMessage(err.response.data.message);
         })
     }
 
@@ -67,11 +66,10 @@ export default function LoginPage (props) {
         .then(r => {
             isLoading(false)
             setMode('login')
-            setMessage(`Created ${email}, You can now sign in`)
+            setMessage(`Created ${email}, Welcome!`)
         })
         .catch(err => {
             isLoading(false)
-            console.log(err)
             setMessage(err.response.data.message);
         })
     }
@@ -98,6 +96,8 @@ export default function LoginPage (props) {
             <LoginForm
                 mode={mode}
                 setMode={setMode}
+                message={message}
+                setMessage={setMessage}
                 handleSignIn={handleSignIn}
                 handleSignUp={handleCreateUser}
             />
