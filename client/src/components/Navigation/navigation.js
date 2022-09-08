@@ -105,7 +105,7 @@ export default function navigation() {
               {/* shared calendars */}
               <NavigationLink 
                 name='Shared Calendars'
-                link='/shared'
+                link='/sharedCalendars'
                 icon={<OfflineShareIcon fontSize='large' sx={{color: 'black'}} />}
               />
 
