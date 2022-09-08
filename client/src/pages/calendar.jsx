@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const localizer = momentLocalizer(moment);
 
-const TodoCalendar = () => {
+const TodoCalendar = ({ users }) => {
   const [todos, setTodos] = useState([
     { start_date: new Date(), end_date: new Date(), todo_body: 'test event' },
     {
@@ -17,8 +17,8 @@ const TodoCalendar = () => {
       todo_body: 'test event 2',
     },
   ]);
+  console.log(users);
   const { user } = useContext(CurrentUserContext);
-  console.log(user);
   const config = {
     url: '/api/',
     method: 'get',
