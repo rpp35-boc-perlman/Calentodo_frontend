@@ -1,13 +1,25 @@
-
-import React, {useState} from 'react';
-import {Box, Container, Button, TextField, Typography, useMediaQuery} from '@mui/material';
+import React, { useState } from 'react';
+import {
+  Box,
+  Container,
+  Button,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import calendar from '../../svg/calendar.png';
 import Navigation from '../Navigation/navigation.js';
 
-export default function LoginForm (props) {
 
-    // state to toggle create and login mode
+export default function LoginForm(props) {
+  // state to toggle create and login mode
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  // state for confirming password - should match password field
+  const [password2, setPassword2] = useState('');
+  const [message, setMessage] = useState(props.message || null);
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -27,6 +39,7 @@ export default function LoginForm (props) {
             return false
         }
     }
+  }
 
     // verify that email password fields are not blank
     function verifyEmailAndPassword () {
@@ -40,22 +53,23 @@ export default function LoginForm (props) {
             return true
         }
     }
+  }
 
-    function handleSignIn () {
-        if(verifyEmailAndPassword()){
-            props.handleSignIn(email, password)
-        }
+  function handleSignIn() {
+    if (verifyEmailAndPassword()) {
+      props.handleSignIn(email, password);
     }
+  }
 
-    function handleSignUp () {
-        if (verifySignUpForm()) {
-            props.handleSignUp(email, password)
-        }
+  function handleSignUp() {
+    if (verifySignUpForm()) {
+      props.handleSignUp(email, password);
     }
+  }
 
-    const tablet = useMediaQuery('(max-width: 650px)');
-    const laptop = useMediaQuery('(max-width: 1000px)');
-    const desktop = useMediaQuery('(min-width: 1250px)');
+  const tablet = useMediaQuery('(max-width: 650px)');
+  const laptop = useMediaQuery('(max-width: 1000px)');
+  const desktop = useMediaQuery('(min-width: 1250px)');
 
     if(props.mode === 'login') {
         return (
@@ -265,3 +279,4 @@ export default function LoginForm (props) {
         )
     }
 }
+
