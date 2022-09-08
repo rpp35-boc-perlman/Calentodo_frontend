@@ -3,11 +3,16 @@ import { CurrentUserContext } from '../../index.js';
 import Statistics from './statistics.js';
 
 function statWrapper(props) {
-  const user = useContext(CurrentUserContext);
-  console.log(CurrentUserContext)
+
+  const {user} = useContext(CurrentUserContext);
+  var user_id = null;
+  if (user) {
+    user_id = user.user_id
+  }
+
   return(
     <>
-      <Statistics user_id={user.user.user_id}/>
+      <Statistics user_id={user_id}/>
     </>
   )
 }

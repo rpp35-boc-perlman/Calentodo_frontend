@@ -23,18 +23,20 @@ class Statistics extends React.Component {
   }
 
   getStats() {
-    axios({
-      method: 'get',
-      url: '/api/',
-      headers: {
-       target: `http://52.8.24.123:3000/statistics?user_id=${this.props.user_id}`
-      }
-    })
-      .then((todos) => {
-        this.setState({
-          todos: todos.data,
-        })
+    if (this.props.user_id) {
+      axios({
+        method: 'get',
+        url: '/api/',
+        headers: {
+         target: `http://52.8.24.123:3000/statistics?user_id=${this.props.user_id}`
+        }
       })
+        .then((todos) => {
+          this.setState({
+            todos: todos.data,
+          })
+        })
+    }
   }
 
   componentDidMount() {
@@ -42,9 +44,11 @@ class Statistics extends React.Component {
     this.getStats();
   }
 
-  // componentDidUpdate() {
-  //   this.getStats();
-  // }
+  componentDidUpdate(oldProps) {
+    if (oldProps.user_id !== this.props.user_id) {
+      this.getStats();
+    }
+  }
 
   checkHandler(e) {
     //event listener
@@ -83,7 +87,7 @@ class Statistics extends React.Component {
       <div>
         {/* pass the active array to chartview as props */}
         <Navigation />
-        <Grid container spacing={0} sx={{ display: 'flex', justifyContent: {xs:'center', md:'flex-start'} }}>
+        <Grid container spacing={0} sx={{ display: 'flex', justifyContent: {xs:'center', md:'space-around'} }}>
           <ChartView activeTodos={this.state.activeTodos}/>
           <TodoList checkHandler={this.checkHandler} todos={this.state.todos}/>
         </Grid>
