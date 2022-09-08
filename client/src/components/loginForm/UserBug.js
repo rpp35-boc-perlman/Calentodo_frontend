@@ -42,7 +42,9 @@ export default function UserBug (props) {
                     borderBottom: '1px solid white',
                     padding: '.25em',
                     height: '10em',
-                    maxHeight: showButton ? '8em' : '4em',
+                    fontSize: '13.7px',
+                    lineHeight: '24px',
+                    maxHeight: showButton ? '10em' : '4em',
                     transition: 'max-height .5s ease-in-out',
                 }}>
                <Avatar
@@ -62,7 +64,8 @@ export default function UserBug (props) {
                    <Typography
                         variant='subtitle1'
                         sx={{
-                            color: 'white'
+                            color: 'white',
+                            fontSize: '13.7px',
                         }}
                     >
                         Hello, {user.user_email}
@@ -79,6 +82,8 @@ export default function UserBug (props) {
                             border: '1px solid white',
                             backgroundColor: `${user.color}`,
                             transition: ' .5s ease-in-out',
+                            fontSize: '12px',
+                            fontWeight: '500',
                         }}
                         variant='contained'
                         size="medium"

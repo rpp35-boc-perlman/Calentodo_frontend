@@ -2,8 +2,8 @@
 import React, {useState} from 'react';
 import {Box, Container, Button, TextField, Typography, useMediaQuery} from '@mui/material';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import calendar from '../../svg/calendar.jpg';
-
+import calendar from '../../svg/calendar.png';
+import Navigation from '../Navigation/navigation.js';
 
 export default function LoginForm (props) {
 

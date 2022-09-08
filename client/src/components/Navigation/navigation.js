@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
+import NavigationLink from './Navlink.js';
 import {Fab, Typography} from '@mui/material';
 // for some reason the icons need to be imported individually
 import NavigationIcon from '@mui/icons-material/Navigation';
@@ -49,9 +50,10 @@ export default function navigation() {
         sx={{
           display: 'flex',
           justifyContent: 'flex-end',
+          gap: '1em',
+          fontSize: '.75rem',
           position: 'absolute',
           left: !expand ? '-22em' : '-8em',
-          // get button out fo the corner a little
           textAlign: 'right',
           width: '300px',
           margin: '3em 1em',
@@ -76,79 +78,36 @@ export default function navigation() {
         children={
         <Box
         sx={{
-          width: 200
+          width: 200,
+          fontSize: '1.06rem',
         }}>
           <nav className="navbar">
               <UserBug />
               {/* side note: navlink should be its own component for how much it is repeated, but I was lazy */}
               {/* todo link */}
-              <NavLink className="nav-link" to="/"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  cursor: 'pointer',
-                  gap: "1em",
-                  width: '100%',
-                  color: '1e1e1e',
-                  textDecoration: 'none',
-                }}
-              >
-                <Typography variant="h6" sx={{color: 'black'}}>
-                    Todo Lists
-                </Typography>
-                <ListAltIcon fontSize="large" sx={{color: 'black'}} />
-              </NavLink>
+              <NavigationLink
+                name='Todo Lists'
+                link='/'
+                icon={<ListAltIcon fontSize='large' sx={{color: 'black'}} />}
+              />
               {/* Calendar */}
-              <NavLink className="nav-link" to="/calendar"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  cursor: 'pointer',
-                  gap: "1em",
-                  width: '100%',
-                  color: '1e1e1e',
-                  textDecoration: 'none',
-                }}
-              >
-                <Typography variant="h6"  sx={{color: 'black'}}>
-                    Calendar
-                </Typography>
-                <CalendarMonthIcon fontSize="large"   sx={{color: 'black'}}/>
-              </NavLink>
+              <NavigationLink
+                name='Calendar'
+                link='/calendar'
+                icon={<CalendarMonthIcon fontSize='large' sx={{color: 'black'}} />}
+              />
               {/* Stats */}
-              <NavLink className="nav-link" to="/statistics"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  cursor: 'pointer',
-                  gap: "1em",
-                  width: '100%',
-                  color: '1e1e1e',
-                  textDecoration: 'none',
-                }}
-              >
-                <Typography variant="h6"  sx={{color: 'black'}}>
-                    Statistics
-                </Typography>
-                <EqualizerIcon fontSize="large"   sx={{color: 'black'}}/>
-              </NavLink>
+              <NavigationLink 
+                name='Statistics'
+                link='/statistics'
+                icon={<EqualizerIcon fontSize='large' sx={{color: 'black'}} />}
+              />
               {/* shared calendars */}
-              <NavLink className="nav-link" to="/sharedCalendars"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  cursor: 'pointer',
-                  gap: "1em",
-                  width: '100%',
-                  color: '1e1e1e',
-                  textDecoration: 'none',
-                }}
-              >
-                <Typography variant="h6"  sx={{color: 'black'}}>
-                    Shared Calendars
-                </Typography>
-                <OfflineShareIcon fontSize="large"  sx={{color: 'black'}} />
-              </NavLink>
+              <NavigationLink 
+                name='Shared Calendars'
+                link='/shared'
+                icon={<OfflineShareIcon fontSize='large' sx={{color: 'black'}} />}
+              />
 
               {/* old links for reference */}
               {/* <div className="nav-link"><NavLink className="navlink" to="/todo">Todos</NavLink></div> */}
