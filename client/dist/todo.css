@@ -2,13 +2,12 @@ html {
   background-color: #0a0f72;
 }
 
-
-#vertical {
+.vertical {
   display: 'flex';
   align-items: center;
   justify-content: center;
   writing-mode: vertical-lr;
-  margin-left: 35%;
+  padding-left: 40%;
 }
 
 .add_icon {
@@ -16,32 +15,23 @@ html {
 }
 
 .nav-link {
-  padding: 10% 5% 10%;
+  padding: 10% 5%;
   border-bottom: solid;
-  border-color: white;
+  border-color: #1e1e1e;
+  text-decoration: none;
+}
+
+.nav-link:visted{
+  color: #1e1e1e;
 }
 
 .nav-link:hover {
-  background-color: #dcdedc53;
+  background-color: #24242453;
+  color:grey;
 }
 
 .navlink {
   padding: 5px;
-  color: white;
+  color: #1e1e1e;
 }
 
-.navlink:link {
-  text-decoration: none;
-}
-
-.navlink:visited {
-  text-decoration: none;
-}
-
-.navlink:hover {
-  text-decoration: none;
-}
-
-.navlink:active {
-  text-decoration: none;
-}

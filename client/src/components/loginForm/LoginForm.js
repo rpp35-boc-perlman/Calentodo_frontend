@@ -1,17 +1,23 @@
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import calendar from '../../svg/calendar.png';
 
-import React, {useState} from 'react';
-import {Box, Container, Button, TextField, Typography} from '@mui/material';
 
+export default function LoginForm(props) {
+  // state to toggle create and login mode
 
-export default function LoginForm (props) {
-
-    // state to toggle create and login mode
-
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    // state for confirming password - should match password field
-    const [password2, setPassword2] = useState('')
-    const [message, setMessage] = useState(props.message || null)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  // state for confirming password - should match password field
+  const [password2, setPassword2] = useState('');
+  const [message, setMessage] = useState(props.message || null);
 
     // the user should not be able to submti a blank creation form
     function verifySignUpForm () {
@@ -19,7 +25,7 @@ export default function LoginForm (props) {
             if(password === password2){
                 return true
             } else {
-                setMessage('Passwords do not match')
+                props.setMessage('Passwords do not match')
                 return false
             }
         } else {
@@ -27,62 +33,112 @@ export default function LoginForm (props) {
         }
     }
 
+
     // verify that email password fields are not blank
     function verifyEmailAndPassword () {
         if(email === ''){
-            setMessage('Email is required')
+            props.setMessage('Email is required')
             return false
         } else if(password === ''){
-            setMessage('Password is required')
+            props.setMessage('Password is required')
             return false
         } else {
             return true
         }
     }
 
-    function handleSignIn () {
-        if(verifyEmailAndPassword()){
-            props.handleSignIn(email, password)
-        }
-    }
 
-    function handleSignUp () {
-        if (verifySignUpForm()) {
-            props.handleSignUp(email, password)
-        }
+  function handleSignIn() {
+    if (verifyEmailAndPassword()) {
+      props.handleSignIn(email, password);
     }
+  }
+
+  function handleSignUp() {
+    if (verifySignUpForm()) {
+      props.handleSignUp(email, password);
+    }
+  }
+
+  const tablet = useMediaQuery('(max-width: 650px)');
+  const laptop = useMediaQuery('(max-width: 1000px)');
+  const desktop = useMediaQuery('(min-width: 1250px)');
 
     if(props.mode === 'login') {
         return (
-            <Container sx={{
-                display: 'grid',
-                placeItems: 'center',
+            <Box sx={{
+                display: tablet ? 'grid' : 'flex',
+                flexDirection: tablet ? 'column' : 'row',
+                alignItems: 'center',
+                margin: '0 auto',
+                // gap: tablet ? '5em' : 'none',
                 height: '100vh',
-                maxWidth: '80%'
+                width: desktop ? "40em" : 'auto',
+                maxWidth: '98%',
+                // paddingTop: tablet ? '25%' : 'none',
             }}>
+                {/* top title */}
                 <Box sx={{
-                        width: '80%',
-                        height: '30%',
-                        borderRadius: '.5em',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '1rem',
+                    width: desktop ? "80%" : '80%',
+                    height: tablet ? 'auto' : '20em',
+                    background: tablet ? '#fff' : `url(${calendar})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    borderRadius: tablet ? '10px' : '10px 0 0 10px',
+                    padding: '1em',
+                    color:'black',
+                    margin: '0 auto',
+                }}>
+                    <Typography 
+                        variant='h6'
+                        sx={{
+                            textAlign: 'center',
+                            marginTop: tablet ? 'none' : '12em',
+                        }}
+                    >
+                        Calentodo
+                    </Typography>
+                    <EventAvailableIcon sx={{
+                        fontSize: '2em',
+                        marginTop: tablet ? 'none' : '7.5em',
+                    }}/>                 
+                </Box>
+                {/* login form container */}
+                <Box id="LoginForm" sx={{
+                        width: desktop ? '100%' : '80%',
+                        height: '18em',
+                        borderRadius: tablet ? '.5em' : '0 10px 10px 0',
                         justifyContent: 'center',
                         background: '#fff',
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '1em',
-                        padding: '1.5em'
+                        gap: '.5em',
+                        padding: tablet ? '2em': '2em',
                         }}
                 >
-                    <Typography variant='h3' style={{ color: '#fff', position: 'absolute', top: '25%'}}>
+                    <Typography variant='h4' style={{
+                        color: 'black',
+                        }}
+                    >
                         Login
                     </ Typography>
-                    {message ? <span>{message}</span> : null}
+                    {/* message */}
+                    {props.message ? <Typography variant='overline' sx={{color: 'black', paddingTop: 'none'}}>{props.message}</Typography> : null}
                     <TextField
+                        id='email'
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
                         variant="filled"
                         label="Email"
                     />
                     <TextField
+                        id='password'
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
                         variant="filled"
@@ -90,6 +146,7 @@ export default function LoginForm (props) {
                         type="password"
                     />
                     <Button
+                        id='login-btn'
                         variant="contained"
                         onClick={() => handleSignIn()}
                     >
@@ -102,23 +159,60 @@ export default function LoginForm (props) {
                             setMessage(null)
                         }}
                     >
-                        Don't have an account yet?
+                        <Typography variant='overline'>Don't have an account yet?</Typography>
                     </Button>
                 </Box>
-            </Container>
+            </Box>
         )
     } else {
         return (
-            <Container sx={{
-                display: 'grid',
-                placeItems: 'center',
+            <Box sx={{
+                display: tablet ? 'grid' : 'flex',
+                flexDirection: tablet ? 'column' : 'row',
+                alignItems: 'center',
+                margin: '0 auto',
+                // gap: tablet ? '5em' : 'none',
                 height: '100vh',
-                maxWidth: '80%'
+                width: desktop ? "40em" : 'auto',
+                maxWidth: '98%',
+                // paddingTop: tablet ? '25%' : 'none',
             }}>
+                {/* top title */}
                 <Box sx={{
-                        width: '80%',
-                        height: '40%',
-                        borderRadius: '.5em',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '1rem',
+                    width: '80%',
+                    height: tablet ? 'auto' : '26em',
+                    background: tablet ? '#fff' : `url(${calendar})`,
+                    backgroundSize: laptop ? "fill" : 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    borderRadius: tablet ? '10px' : '10px 0 0 10px',
+                    padding: '1em',
+                    color:'black'
+                }}>
+                    <Typography 
+                        variant='h5'
+                        sx={{
+                            textAlign: 'center',
+                            marginTop: tablet ? 'none' : '10em',
+                        }}
+                    >
+                        Calentodo
+                    </Typography>
+                    <EventAvailableIcon sx={{
+                        fontSize: '2em',
+                        marginTop: tablet ? 'none' : '7.5em',
+                    }}/>                 
+                </Box>
+                {/* sign up form */}
+                <Box sx={{
+                        width: desktop ? '100%' : '80%',
+                        height: '25em',
+                        borderRadius: tablet ? '.5em' : '0 10px 10px 0',
                         justifyContent: 'center',
                         background: '#fff',
                         display: 'flex',
@@ -127,15 +221,14 @@ export default function LoginForm (props) {
                         padding: '1.5em'
                         }}
                 >
-                    <Typography variant='h2' style={{
-                            color: '#fff',
-                            position: 'absolute',
-                            top: '20%'
+                    <Typography variant='h4' style={{
+                            color: 'black',
                        }}
                     >
                         Sign Up
                     </Typography>
-                    {message ? <span>{message}</span> : null}
+                    {/* message */}
+                    {props.message ? <Typography variant='overline' sx={{color: 'black', paddingTop: 'none'}}>{props.message}</Typography> : null}
                     <TextField
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
@@ -172,10 +265,11 @@ export default function LoginForm (props) {
                             setMessage(null)
                         }}
                     >
-                        Already have an Account?
+                        <Typography variant='overline'>Already have an account?</Typography>
                     </Button>
                 </Box>
-            </Container>
+            </Box>
         )
     }
 }
+
