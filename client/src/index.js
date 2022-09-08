@@ -69,26 +69,23 @@ class App extends React.Component {
         };
         this.setUser(res.data.data);
         axios(config)
-          .then((res) => {
-            for (var user of res.data.users) {
-              user.isVisible = false;
-            }
-            this.setState(
-              {
-                users: res.data.users,
-              },
-              () => console.log(this.state.users, 'users')
-            );
-          })
-          .catch((err) => {
-            console.error(err);
-          });
+        .then(res => {
+          for (var user of res.data.users) {
+            user.isVisible = false;
+          }
+          this.setState({
+            users: res.data.users
+          },() => console.log(this.state.users, 'users'))
+        })
+        .catch((err) => {
+          // console.error(err)
+        })
         this.setState({
           checkedState: new Array(this.state.users.length).fill(false),
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
 
@@ -120,21 +117,12 @@ class App extends React.Component {
               <Route path="/" element={<Main />} />
               <Route path="/login" element={<LoginPage />} />
               {/* <Route path="/todo" element={<Main />} /> */}
-              <Route
-                path="/calendar"
-                element={<TodoCalendar users={this.state.users} />}
-              />
-
-              <Route path="/statistics" element={<StatisticsWrapper />} />
-              <Route
-                path="/sharedCalendars"
-                element={
-                  <SharedCalendars
-                    users={this.state.users}
-                    handleOnChange={this.handleOnChange}
-                    checkedState={this.state.checkedState}
-                  />
-                }
+              <Route path="/calendar" element={<TodoCalendar />} />
+              <Route path="/statistics" element={<StatisticsWrapper />}/>
+              <Route path="/sharedCalendars" element={<SharedCalendars
+                users={this.state.users}
+                handleOnChange={this.handleOnChange}
+                checkedState={this.state.checkedState}/>}
               />
             </Routes>
           </HashRouter>
