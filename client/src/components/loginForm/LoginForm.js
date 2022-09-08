@@ -21,11 +21,6 @@ export default function LoginForm(props) {
   const [password2, setPassword2] = useState('');
   const [message, setMessage] = useState(props.message || null);
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    // state for confirming password - should match password field
-    const [password2, setPassword2] = useState('')
-
     // the user should not be able to submti a blank creation form
     function verifySignUpForm () {
         if( verifyEmailAndPassword() ){
@@ -39,7 +34,7 @@ export default function LoginForm(props) {
             return false
         }
     }
-  }
+
 
     // verify that email password fields are not blank
     function verifyEmailAndPassword () {
@@ -53,7 +48,7 @@ export default function LoginForm(props) {
             return true
         }
     }
-  }
+
 
   function handleSignIn() {
     if (verifyEmailAndPassword()) {
