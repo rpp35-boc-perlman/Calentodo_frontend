@@ -2,6 +2,7 @@ const request = require('supertest')
 
 const app = require('../server/server');
 
+// checks server can start
 describe('Front end Proxy Tests', () => {
     let server = null
 

@@ -6,8 +6,8 @@ import axios from 'axios';
 import TodoCalendar from './pages/calendar.jsx';
 
 import StatisticsWrapper from './components/Statistics/statisticsWrapper.js';
-import SharedCalendars from './components/SharedCalendars/sharedCalendars.js'
-import {HashRouter, Routes, Route } from 'react-router-dom';
+import SharedCalendars from './components/SharedCalendars/sharedCalendars.js';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage';
 
@@ -25,13 +25,11 @@ class App extends React.Component {
       user: null,
       //users: [
       checkedState: [],
-      users: []
-
+      users: [],
     };
 
-    this.setUser = this.setUser.bind(this)
+    this.setUser = this.setUser.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
-
   }
 
   // if there is a cookie, get the user data from the server
@@ -54,22 +52,21 @@ class App extends React.Component {
   // update state to container the new user data
   // expects and object
 
-  setUser (data) {
-    this.setState({user: data})
-
+  setUser(data) {
+    this.setState({ user: data });
   }
 
   componentDidMount() {
     axios
-    .get('/api/users/me')
-    .then((res) => {
+      .get('/api/users/me')
+      .then((res) => {
         const config = {
           url: '/api/',
           method: 'get',
           headers: {
-            target: `http://ec2-34-205-69-211.compute-1.amazonaws.com/users/${res.data.data.user_id}`
-          }
-        }
+            target: `http://ec2-34-205-69-211.compute-1.amazonaws.com/users/${res.data.data.user_id}`,
+          },
+        };
         this.setUser(res.data.data);
         axios(config)
         .then(res => {
@@ -81,30 +78,32 @@ class App extends React.Component {
           },() => console.log(this.state.users, 'users'))
         })
         .catch((err) => {
-          console.error(err)
-        }
-        )
-        this.setState({
-          checkedState: new Array(this.state.users.length).fill(false)
+          // console.error(err)
         })
+        this.setState({
+          checkedState: new Array(this.state.users.length).fill(false),
+        });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
 
   handleOnChange(position) {
-    console.log('clicked')
+    console.log('clicked');
     const updatedCheckedState = this.state.checkedState.map((item, index) =>
       index === position ? !item : item
     );
-    const users = [...this.state.users]
-    var user = users[position]
-    user.isVisible = !user.isVisible
-    this.setState({
-      checkedState: updatedCheckedState,
-      users: users
-    },() => console.log(this.state.users))
+    const users = [...this.state.users];
+    var user = users[position];
+    user.isVisible = !user.isVisible;
+    this.setState(
+      {
+        checkedState: updatedCheckedState,
+        users: users,
+      },
+      () => console.log(this.state.users)
+    );
   }
 
   render() {
@@ -119,11 +118,12 @@ class App extends React.Component {
               <Route path="/login" element={<LoginPage />} />
               {/* <Route path="/todo" element={<Main />} /> */}
               <Route path="/calendar" element={<TodoCalendar />} />
-
               <Route path="/statistics" element={<StatisticsWrapper />}/>
               <Route path="/sharedCalendars" element={<SharedCalendars
-              users={this.state.users} handleOnChange={this.handleOnChange}
-              checkedState={this.state.checkedState}/>}/>
+                users={this.state.users}
+                handleOnChange={this.handleOnChange}
+                checkedState={this.state.checkedState}/>}
+              />
             </Routes>
           </HashRouter>
         </CurrentUserContext.Provider>
