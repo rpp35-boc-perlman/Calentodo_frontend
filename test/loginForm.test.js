@@ -24,31 +24,6 @@ describe('Login Form Tests', () => {
         container = null;
     })
 
-    it('Should render a login form', () => {
-        const component = renderer.create(
-            <LoginForm
-                mode="login"
-                setMessage={onClick}
-                handleSignIn={onSubmit}
-                handleSignUp={onSubmit}
-            />
-        )
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-    })
-
-    it('Should render a sign up form', () => {
-        const component = renderer.create(
-            <LoginForm
-                mode='create'
-                setMessage={onClick}
-                handleSignIn={onSubmit}
-                handleSignUp={onSubmit}
-            />
-        )
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-    })
 
     it('Should render a login form with Email, Password Fields, and a message ', () => {
         act(() => {
@@ -100,6 +75,42 @@ describe('Login Form Tests', () => {
         expect(onClick).toHaveBeenCalledTimes(1);
     });
 
-    
+    it("Should trigger a new message when the submit button is clicked", () => {
+        act(() => {
+            render(
+                <LoginForm
+                    mode="login"
+                    setMode={onClick}
+                    setMessage={onClick}
+                    handleSignIn={onSubmit}
+                    handleSignUp={onSubmit}
+                />, container);
+        })
+        const button = container.querySelectorAll('button')[0];
+        expect(button.textContent).toBe("Login");
+        act(() => {
+            button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+        })
+        expect(onClick).toHaveBeenCalledTimes(2);
+    });
+
+    it('Should trigger a new message when the Sign up button is clicked', () => {
+        act(() => {
+            render(
+                <LoginForm
+                    mode="create"
+                    setMode={onClick}
+                    setMessage={onClick}
+                    handleSignIn={onSubmit}
+                    handleSignUp={onSubmit}
+                />, container);
+        })
+        const button = container.querySelectorAll('button')[0];
+        expect(button.textContent).toBe("Create Account");
+        act(() => {
+            button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+        })
+        expect(onClick).toHaveBeenCalledTimes(3);
+    });
 
 });
