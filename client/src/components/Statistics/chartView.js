@@ -75,7 +75,7 @@ class ChartView extends React.Component {
 
   render() {
     return (
-      <Grid item xs={11} md={9} sx={{ backgroundColor: '#113255', padding: 2,  color: '#ffffff' }}>
+      <Grid item xs={11} md={9} sx={{ display: 'flex', alignItems: 'center', backgroundColor: '#113255', padding: 2 }}>
         <Bar  id="statisticsChart" data={
           {
             labels: this.state.labels,
