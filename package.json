@@ -5,7 +5,7 @@
   "main": "babel.config.js",
   "scripts": {
     "test": "jest --coverage",
-    "start": "node NODE_ENV=PROD server/www.js",
+    "start": "NODE_ENV=PROD node server/www.js",
     "dev": "nodemon NODE_ENV=DEV server/www.js",
     "react-dev": "webpack --mode development --watch",
     "build": "webpack --mode production"
