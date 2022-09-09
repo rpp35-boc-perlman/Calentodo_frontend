@@ -57,36 +57,40 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios
-      .get('/api/users/me')
-      .then((res) => {
-        const config = {
-          url: '/api/',
-          method: 'get',
-          headers: {
-            target: `http://ec2-34-205-69-211.compute-1.amazonaws.com/users/${res.data.data.user_id}`,
-          },
-        };
-        this.setUser(res.data.data);
-        axios(config)
-        .then(res => {
-          for (var user of res.data.users) {
-            user.isVisible = false;
-          }
+    // check there is a user in local storage
+    const u = JSON.parse( localStorage.getItem('user') );
+    if(u && u.expires > Date.now()) {
+      axios
+        .get('/api/users/me')
+        .then((res) => {
+          const config = {
+            url: '/api/',
+            method: 'get',
+            headers: {
+              target: `http://ec2-34-205-69-211.compute-1.amazonaws.com/users/${u.user_id}`,
+            },
+          };
+          this.setUser(res.data.data);
+          axios(config)
+          .then(res => {
+            for (var user of res.data.users) {
+              user.isVisible = false;
+            }
+            this.setState({
+              users: res.data.users
+            },() => console.log(this.state.users, 'users'))
+          })
+          .catch((err) => {
+            // console.error(err)
+          })
           this.setState({
-            users: res.data.users
-          },() => console.log(this.state.users, 'users'))
+            checkedState: new Array(this.state.users.length).fill(false),
+          });
         })
         .catch((err) => {
-          // console.error(err)
-        })
-        this.setState({
-          checkedState: new Array(this.state.users.length).fill(false),
+          // console.log(err);
         });
-      })
-      .catch((err) => {
-        // console.log(err);
-      });
+    }
   }
 
   handleOnChange(position) {
