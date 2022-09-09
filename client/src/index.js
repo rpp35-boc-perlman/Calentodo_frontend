@@ -10,6 +10,7 @@ import SharedCalendars from './components/SharedCalendars/sharedCalendars.js';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage';
+import LoggedOut from './pages/LoggedOut';
 
 import Main from './components/Todo/Main.jsx';
 
@@ -124,6 +125,7 @@ class App extends React.Component {
                 handleOnChange={this.handleOnChange}
                 checkedState={this.state.checkedState}/>}
               />
+              <Route path="/loggedOut" element={<LoggedOut />} />
             </Routes>
           </HashRouter>
         </CurrentUserContext.Provider>
