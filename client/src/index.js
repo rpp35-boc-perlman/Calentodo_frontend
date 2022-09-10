@@ -60,7 +60,8 @@ class App extends React.Component {
   componentDidMount() {
     // check there is a user in local storage
     const u = JSON.parse( localStorage.getItem('user') );
-    if(u && u.expires > Date.now()) {
+    const expired = new Date(u.expires);
+    if(u && expired > Date.now()) {
       axios
         .get('/api/users/me')
         .then((res) => {

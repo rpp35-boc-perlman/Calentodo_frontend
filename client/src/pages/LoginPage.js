@@ -38,7 +38,7 @@ export default function LoginPage(props) {
       .then((r) => {
         // pull the user_id, email, and color out of the respsonse
         const { user_id, user_email, color } = r.data.data;
-        setUser({ user_id, user_email, color });
+        setUser({ user_id, user_email, color, expires: Date.now() + 3600000 });
         isLoading(false);
         // redirect user back to the app after they login
         navigate('/');
