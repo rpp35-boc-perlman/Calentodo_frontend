@@ -60,6 +60,7 @@ class App extends React.Component {
   componentDidMount() {
     // check there is a user in local storage
     const u = JSON.parse( localStorage.getItem('user') );
+
     const expired = new Date(u.expires);
     if(u && expired > Date.now()) {
       axios
@@ -86,7 +87,7 @@ class App extends React.Component {
             // console.error(err)
           })
           this.setState({
-            checkedState: new Array(this.state.users.length).fill(false),
+            checkedState: new Array(this.state.users.length).fill(true),
           });
         })
         .catch((err) => {
