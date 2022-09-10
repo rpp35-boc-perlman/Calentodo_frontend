@@ -85,7 +85,7 @@ class ChartView extends React.Component {
         options={{
           plugins: {
             legend: {
-              display: this.state.display,
+              display: false,
               labels: {
                 color: 'white'
               }

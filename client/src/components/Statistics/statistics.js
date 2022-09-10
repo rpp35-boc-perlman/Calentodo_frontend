@@ -87,7 +87,7 @@ class Statistics extends React.Component {
       <div>
         {/* pass the active array to chartview as props */}
         <Navigation />
-        <Grid container spacing={0} sx={{ display: 'flex', justifyContent: {xs:'center', md:'space-around'}}}>
+        <Grid container spacing={0} sx={{ display: 'flex', justifyContent: {xs:'center', md:'space-around'}, p: 2 }}>
           <ChartView activeTodos={this.state.activeTodos}/>
           <TodoList checkHandler={this.checkHandler} todos={this.state.todos}/>
         </Grid>
