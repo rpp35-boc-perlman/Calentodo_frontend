@@ -134,7 +134,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 # To-Do List
 The following demonstrates the click and dragging feature of to-do items.
 
-insert gif here
+![CalenTodo](https://user-images.githubusercontent.com/66839046/189499449-6098e31e-5a34-4095-a5bc-45c969861e2e.gif)
+
 
 Each item is categorized based on start date as Late, Active or Pending.
 Each item is draggable to either mark as complete or mark as started.
