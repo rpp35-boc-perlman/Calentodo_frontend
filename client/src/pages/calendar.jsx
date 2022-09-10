@@ -28,19 +28,33 @@ const TodoCalendar = ({ users }) => {
         user.user_id,
     },
   };
-  useEffect(
-    (args) => {
-      axios(config)
-        .then((results) => {
-          setTodos(results.data);
-        })
-        .catch((reason) => {
-          console.error(reason);
-        });
-    },
-    [todos.length]
-  );
-
+  if (!users?.length) {
+    useEffect(
+      (args) => {
+        axios(config)
+          .then((results) => {
+            setTodos(results.data.filter(({ status }) => status === 'pending'));
+          })
+          .catch((reason) => {
+            console.error(reason);
+          });
+      },
+      [todos.length]
+    );
+  }
+  if (users?.length) {
+    setTodos(
+      users
+        .map((user) =>
+          user.todos.map((todo) => ({
+            ...todo,
+            todo_body: `[${user.user_email}] ` + todo.todo_body,
+          }))
+        )
+        .flat()
+        .filter(({ status }) => status === 'pending')
+    );
+  }
   return (
     <>
       <Navigation />

@@ -18,10 +18,10 @@ export default function UserBug (props) {
         }
         axios(config)
         .then(r => {
+            localStorage.removeItem('user')
             setUser(null)
             // remove user info from local storage
-            localStorage.removeItem('user')
-            navigate('/')
+            navigate('/loggedOut', {replace: true})
         })
         .catch(err => {
             console.log(err)
