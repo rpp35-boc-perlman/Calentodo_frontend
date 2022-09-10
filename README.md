@@ -131,6 +131,14 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
+# To-Do List
+The following demonstrates the click and dragging feature of to-do items.
+
+insert gif here
+
+Each item is categorized based on start date as Late, Active or Pending.
+Each item is draggable to either mark as complete or mark as started.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -139,7 +147,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ## Roadmap
 
 - [x] User Login, Authentication, and Creation
-- [x] Todo Lists, with Active, Pedning, and Late Tasks
+- [x] Todo Lists, with Active, Pending, and Late Tasks
     - [x] Task Creation, Editing, and Deletion
 - [x] Calendar View of Tasks
     - [x] Month, Week, Day, and Agenda Views
