@@ -85,7 +85,7 @@ class App extends React.Component {
             // console.error(err)
           })
           this.setState({
-            checkedState: new Array(this.state.users.length).fill(false),
+            checkedState: new Array(this.state.users.length).fill(true),
           });
         })
         .catch((err) => {
