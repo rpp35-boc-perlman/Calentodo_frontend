@@ -62,6 +62,7 @@ class SharedCalendars extends React.Component {
   render() {
     return(
       <>
+       <Navigation />
        <CalendarList users={this.props.users}
         handleOnChange={this.props.handleOnChange}
         checkedState={this.props.checkedState}/>
