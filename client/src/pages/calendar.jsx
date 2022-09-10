@@ -33,7 +33,14 @@ const TodoCalendar = ({ users }) => {
       (args) => {
         axios(config)
           .then((results) => {
-            setTodos(results.data.filter(({ status }) => status === 'pending'));
+            setTodos(
+              results.data.filter(
+                ({ status }) =>
+                  status === 'pending' ||
+                  status === 'active' ||
+                  status === 'late'
+              )
+            );
           })
           .catch((reason) => {
             console.error(reason);
@@ -52,7 +59,10 @@ const TodoCalendar = ({ users }) => {
           }))
         )
         .flat()
-        .filter(({ status }) => status === 'pending')
+        .filter(
+          ({ status }) =>
+            status === 'pending' || status === 'active' || status === 'late'
+        )
     );
   }
   return (
