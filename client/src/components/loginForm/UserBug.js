@@ -18,8 +18,10 @@ export default function UserBug (props) {
         }
         axios(config)
         .then(r => {
+            localStorage.removeItem('user')
             setUser(null)
-            navigate('/')
+            // remove user info from local storage
+            navigate('/loggedOut', {replace: true})
         })
         .catch(err => {
             console.log(err)
@@ -42,7 +44,9 @@ export default function UserBug (props) {
                     borderBottom: '1px solid white',
                     padding: '.25em',
                     height: '10em',
-                    maxHeight: showButton ? '8em' : '4em',
+                    fontSize: '13.7px',
+                    lineHeight: '24px',
+                    maxHeight: showButton ? '10em' : '4em',
                     transition: 'max-height .5s ease-in-out',
                 }}>
                <Avatar
@@ -62,14 +66,15 @@ export default function UserBug (props) {
                    <Typography
                         variant='subtitle1'
                         sx={{
-                            color: 'white'
+                            color: 'white',
+                            fontSize: '13.7px',
                         }}
                     >
                         Hello, {user.user_email}
                     </ Typography>
                     {/* button hides and shows with animations */}
-                    <Button 
-                        onClick={() => { 
+                    <Button
+                        onClick={() => {
                             handleSignOut()
                         }}
                         sx={{
@@ -79,6 +84,8 @@ export default function UserBug (props) {
                             border: '1px solid white',
                             backgroundColor: `${user.color}`,
                             transition: ' .5s ease-in-out',
+                            fontSize: '12px',
+                            fontWeight: '500',
                         }}
                         variant='contained'
                         size="medium"
@@ -91,15 +98,27 @@ export default function UserBug (props) {
     } else {
         // if there is no user, show a login button
         return(
-            <Button variant="contained"
-                size="large"
-                sx={{
-                    backgroundColor: '#F99F03',
-                    padding: '.5em 1em',
-                }}
-            >
-                <Link style={{textDecoration: 'none', color: '#fff'}} to="/login">Login</Link>
-            </Button>
+            <div style={{
+                width: '100%',
+                display: 'grid',
+                placeItems: 'center',
+                padding: "1em 0"
+            }}>
+                <Button
+                    onClick={() => navigate('/login')}
+                    variant="contained"
+                    size="large"
+                    sx={{
+                        backgroundColor: '#F99F03',
+                        '&hover': {
+                            backgroundColor: '#F99F03',
+                            padding: '.5em 2em',
+                        }
+                    }}
+                >
+                    <Link style={{textDecoration: 'none', color: '#fff'}} to="/login">Login</Link>
+                </Button>
+            </div>
         )
     }
 
