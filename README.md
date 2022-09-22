@@ -31,9 +31,9 @@
   <p align="center">
     A powerful todo tool
     <br />
-<!--     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+<!--     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a> -->
     <br />
-    <br /> -->
+    <br />
 <!--     <a href="https://github.com/github_username/repo_name">View Demo</a> -->
     
     <a href="https://github.com/rpp35-boc-perlman/Calentodo_frontend/issues">Report Bug</a>
