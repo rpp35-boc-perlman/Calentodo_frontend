@@ -34,7 +34,7 @@
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+<!--     <a href="https://github.com/github_username/repo_name">View Demo</a> -->
     ·
     <a href="https://github.com/rpp35-boc-perlman/Calentodo_frontend/issues">Report Bug</a>
     ·
@@ -88,6 +88,7 @@ Calentodo is a powerful innovative tool created to help you keep track of your t
 ### Built With
 
 * [![React][React.js]][React-url]
+* [![MUI][mui.com]][mui-url]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -214,5 +215,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [product-screenshot]: images/screenshot.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
+[mui.com]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
+[mui-url]: https://mui.com/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
