@@ -22,9 +22,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+<!--   <a href="https://github.com/github_username/repo_name">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  </a> -->
 
 <h3 align="center">Calentodo</h3>
 
@@ -36,9 +36,9 @@
     <br />
     <a href="https://github.com/github_username/repo_name">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/rpp35-boc-perlman/Calentodo_frontend/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/rpp35-boc-perlman/Calentodo_frontend/issues">Request Feature</a>
   </p>
 </div>
 
@@ -201,13 +201,13 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/badge/Contributors-List-blue
 [contributors-url]: https://github.com/rpp35-boc-perlman/Calentodo_frontend/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge&logo=appveyor
 [forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/badge/Stars-Gazers-green
+[stars-shield]: https://img.shields.io/badge/Stars-Gazers-green?style=for-the-badge&logo=appveyor
 [stars-url]: https://github.com/rpp35-boc-perlman/Calentodo_frontend/stargazers
-[issues-shield]: https://img.shields.io/badge/Issues-List-red
+[issues-shield]: https://img.shields.io/badge/Issues-List-red?style=for-the-badge&logo=appveyor
 [issues-url]: https://github.com/rpp35-boc-perlman/Calentodo_frontend/issues
-[license-shield]: https://img.shields.io/badge/License-LICENSE.txt-yellow
+[license-shield]: https://img.shields.io/badge/License-LICENSE.txt-yellow?style=for-the-badge&logo=appveyor
 [license-url]: https://github.com/rpp35-boc-perlman/Calentodo_frontend/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
