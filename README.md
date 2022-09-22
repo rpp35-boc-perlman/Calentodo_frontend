@@ -79,7 +79,7 @@
 
 <!-- Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` -->
 
-Calentodo is a powerful innovative tool created to help you keep track of your to do list. It features creation and editing of todos, an integrated and interactive calendar that you can display choice todos on in order to keep track off them, a sharing system that allows you to view friends todo calendars, and a view which allows you to see how much time that you have spent on todos.
+Calentodo is a powerful, innovative tool created to help you keep track of your todo list. It features creation and editing of todos, an integrated and interactive calendar that you can display todos on in order to keep track of them, a sharing system that allows you to view friends todo calendars, and a view which allows you to see how much time that you have spent on your different todos.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
