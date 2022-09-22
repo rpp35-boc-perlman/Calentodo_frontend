@@ -85,8 +85,8 @@ Calentodo is a powerful, innovative tool created to help you keep track of your 
 
 ### Built With
 
-∙ [![React][React.js]][React-url]
-∙ [![MUI][mui.com]][mui-url]
+* [![React][React.js]][React-url]
+* [![MUI][mui.com]][mui-url]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
