@@ -199,7 +199,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/badge/Contributors-List-blue
+[contributors-shield]: https://img.shields.io/badge/Contributors-List-blue?style=for-the-badge&logo=appveyor
 [contributors-url]: https://github.com/rpp35-boc-perlman/Calentodo_frontend/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge&logo=appveyor
 [forks-url]: https://github.com/github_username/repo_name/network/members
